@@ -1,9 +1,9 @@
 <?php
 class Database {
     private $host = "localhost";
-    private $db_name = "cafateria_db";
-    private $username = "root";
-    private $password = "php";
+    private $db_name = "cafeteria_db";
+    private $username = "cafeteria_admin";
+    private $password = "1234";
     public $conn;
 
     public function getConnection() {
