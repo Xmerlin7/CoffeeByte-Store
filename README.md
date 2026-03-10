@@ -23,7 +23,7 @@ cafeteria-project/
 ├── config/            # Configuration files and DB connection logic
 ├── includes/          # Shared UI components (Header, Footer, Sidebar)
 ├── assets/            # Static assets (CSS, JS, Images, Uploads)
-└── database.sql       # Unified Database Schema
+└── schema.sql       # Unified Database Schema
 
 ```
 
