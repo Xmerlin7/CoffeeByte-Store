@@ -1,31 +1,25 @@
+-- 1. إنشاء قاعدة البيانات
 CREATE DATABASE IF NOT EXISTS cafeteria_db;
 USE cafeteria_db;
 
--- 1. Table: users
+-- 2. جدول المستخدمين  الـ 
 CREATE TABLE users (
     id INT AUTO_INCREMENT PRIMARY KEY,
     name VARCHAR(100) NOT NULL,
     email VARCHAR(100) UNIQUE NOT NULL,
     password VARCHAR(255) NOT NULL,
-    room_id INT,
     image VARCHAR(255),
     role ENUM('admin', 'user') DEFAULT 'user',
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
--- 2. Table: rooms
-CREATE TABLE rooms (
-    id INT AUTO_INCREMENT PRIMARY KEY,
-    room_number VARCHAR(10) NOT NULL UNIQUE
-);
-
--- 3. Table: categories
+-- 3. جدول التصنيفات (Categories)
 CREATE TABLE categories (
     id INT AUTO_INCREMENT PRIMARY KEY,
     name VARCHAR(50) NOT NULL UNIQUE
 );
 
--- 4. Table: products
+-- 4. جدول المنتجات
 CREATE TABLE products (
     id INT AUTO_INCREMENT PRIMARY KEY,
     name VARCHAR(100) NOT NULL,
@@ -36,7 +30,7 @@ CREATE TABLE products (
     FOREIGN KEY (category_id) REFERENCES categories(id) ON DELETE SET NULL
 );
 
--- 5. Table: orders
+-- 5. جدول الطلبات (Orders)
 CREATE TABLE orders (
     id INT AUTO_INCREMENT PRIMARY KEY,
     user_id INT,
@@ -47,7 +41,7 @@ CREATE TABLE orders (
     FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE
 );
 
--- 6. Table: order_items (العلاقة بين المنتجات والطلبات)
+-- 6. جدول تفاصيل الطلب (Order Items)
 CREATE TABLE order_items (
     id INT AUTO_INCREMENT PRIMARY KEY,
     order_id INT,
@@ -59,16 +53,16 @@ CREATE TABLE order_items (
 );
 
 
-ALTER TABLE users ADD FOREIGN KEY (room_id) REFERENCES rooms(id) ON DELETE SET NULL;
+-- مستخدم أدمن (الايميل: admin@cafeteria.com | الباسورد: 123456)
+INSERT INTO users (name, email, password, role) 
+VALUES ('Seif Admin', 'admin@cafeteria.com', '123456', 'admin');
 
--- عشان الدنيا متبقاش صحراااااااااا
+-- تصنيفات
+INSERT INTO categories (name) VALUES ('Drinks'), ('Snacks'), ('Desserts');
 
-INSERT INTO rooms (room_number) VALUES ('201'), ('202'), ('Cloud Lab');
-
-INSERT INTO users (name, email, password, room_id, role) 
-VALUES ('Seif Admin', 'admin@cafeteria.com', '123456', 1, 'admin');
-
-INSERT INTO categories (name) VALUES ('Drinks'), ('Sandwiches');
-
+-- منتجات تجريبية
 INSERT INTO products (name, price, category_id, status) 
-VALUES ('Espresso', 45.00, 1, 'available'), ('Chicken Burger', 85.50, 2, 'available');
+VALUES 
+('Turkish Coffee', 35.00, 1, 'available'),
+('Club Sandwich', 75.50, 2, 'available'),
+('Chocolate Cake', 50.00, 3, 'available');
