@@ -48,8 +48,7 @@
 * users.php
 * addUser.php
 * editUser.php
-* rooms.php
-* addRoom.php
+
 
 **UI**
 
@@ -64,13 +63,12 @@
 * Update user
 * Delete user
 * Upload user image
-* Assign room
-* Manage rooms
+
 
 **Database Tables**
 
 * users
-* rooms
+
 
 ---
 
@@ -118,7 +116,7 @@
 * Add to cart button
 * * / − quantity buttons
 * Notes field
-* Room dropdown
+
 
 **PHP Logic**
 
@@ -174,7 +172,6 @@
 # Database Tables
 
 * users
-* rooms
 * categories
 * products
 * orders
