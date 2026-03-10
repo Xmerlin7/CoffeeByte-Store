@@ -60,3 +60,15 @@ CREATE TABLE order_items (
 
 
 ALTER TABLE users ADD FOREIGN KEY (room_id) REFERENCES rooms(id) ON DELETE SET NULL;
+
+-- عشان الدنيا متبقاش صحراااااااااا
+
+INSERT INTO rooms (room_number) VALUES ('201'), ('202'), ('Cloud Lab');
+
+INSERT INTO users (name, email, password, room_id, role) 
+VALUES ('Seif Admin', 'admin@cafeteria.com', '123456', 1, 'admin');
+
+INSERT INTO categories (name) VALUES ('Drinks'), ('Sandwiches');
+
+INSERT INTO products (name, price, category_id, status) 
+VALUES ('Espresso', 45.00, 1, 'available'), ('Chicken Burger', 85.50, 2, 'available');
