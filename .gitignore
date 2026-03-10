@@ -1,0 +1,9 @@
+# Ignore database config with passwords
+config/db.php
+
+# Ignore uploaded images
+assets/uploads/*
+
+# Ignore OS junk
+.DS_Store
+Thumbs.db
