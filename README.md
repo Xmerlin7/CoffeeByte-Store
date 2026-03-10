@@ -88,9 +88,3 @@ git push origin feature-your-name
 * **Logic Separation:** Keep SQL queries inside the Classes; do not write raw SQL in the HTML files.
 
 ---
-
-### Final Tip for Seif:
-
-Make sure to delete that "Arabic keyboard gibberish" from the bottom of your file before you commit! This English version looks much cleaner and will definitely impress your instructor, Engineer Rehab.
-
-**Would you like me to generate a sample `Product.php` class so your team has a template for how to write the OOP logic?**
