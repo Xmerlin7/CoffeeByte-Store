@@ -39,9 +39,20 @@
                     </div>
                 </div>
 
+                <div class="mb-3">
+                    <label class="form-label small fw-semibold">Old Password</label>
+                    <div class="input-group">
+                        <span class="input-group-text bg-body-secondary border-end-0">
+                            <i class="bi bi-lock text-body-secondary"></i>
+                        </span>
+                        <input type="password" name="old_password" class="form-control border-start-0 bg-body-secondary ps-0"
+                            placeholder="••••••••" autocomplete="current-password" required />
+                    </div>
+                </div>
+
                 <div class="d-grid">
                     <button type="submit" name="reset-btn" class="btn btn-warning rounded-3 fw-semibold py-2">
-                        Send Reset Link <i class="bi bi-arrow-right ms-1"></i>
+                        Verify Email <i class="bi bi-arrow-right ms-1"></i>
                     </button>
                 </div>
 
