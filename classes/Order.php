@@ -70,7 +70,22 @@ class order{
     }
 
 
+    public function updateStatus($new_status){
+        $sql = "UPDATE orders SET status = :status WHERE id = :id";
+        $stmt = $this->pdo->prepare($sql);
+        $result = $stmt->execute([
+            ':status' => $new_status,
+            ':id' => $this->id
+        ]);
 
+        if($result){
+            echo "Order status updated successfully";
+        }else{
+            echo "Error updating order status";
+        }
+
+        $this->pdo = null;
+    }
 
 }
 
