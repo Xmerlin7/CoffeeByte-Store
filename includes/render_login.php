@@ -21,7 +21,8 @@ if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
 }
 
 try {
-    $db         = new Database();
+
+    $db = new Database();
     $connection = $db->getConnection();
 
     $query = "SELECT * FROM users WHERE email = :email LIMIT 1";
@@ -41,3 +42,4 @@ try {
     header("Location: ../public/login.php?message=Something went wrong");
 }
 exit;
+?>
