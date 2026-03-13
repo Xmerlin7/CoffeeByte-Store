@@ -7,7 +7,7 @@ $connection = $dbClass->getConnection();
 
 $user_id = 2;
 
-if($connection) {
+if ($connection) {
     echo "عاش يا سيف! الداتابيز متصلة وزي الفل.";
 
     echo "<br/>";

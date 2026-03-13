@@ -1,74 +1,89 @@
 <?php
-require_once __DIR__ . '/../classes/Database.php';
-require_once __DIR__ . '/../classes/Product.php';
-require_once __DIR__ . '/../classes/Category.php';
-require_once __DIR__ . '/../includes/layout.php'; // if layout is in includes/
-require_once '../includes/layout.php';
+require_once __DIR__ . '/../../classes/Database.php';
+require_once __DIR__ . '/../../classes/Product.php';
+require_once __DIR__ . '/../../classes/Category.php';
+require_once __DIR__ . '/../../includes/layout.php';
+
+// ── Load product ──────────────────────────────────────────
+$id      = isset($_GET['id']) ? (int)$_GET['id'] : 0;
+$product = new Product();
+$p       = $product->getById($id);
+
+if (!$p) {
+    header('Location: manage-products.php');
+    exit;
+}
 
 $errors  = [];
 $message = '';
 
+// ── Handle form submit ────────────────────────────────────
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     $name        = trim($_POST['name'] ?? '');
     $price       = $_POST['price'] ?? '';
     $category_id = $_POST['category_id'] ?? '';
     $status      = $_POST['status'] ?? 'available';
+    $imagePath   = $p['image']; // keep existing by default
 
-    // ── Validate ──────────────────────────────────────────
-    if ($name === '')            $errors[] = 'Product name is required.';
-    if (!is_numeric($price))     $errors[] = 'Price must be a number.';
-    if ($category_id === '')     $errors[] = 'Please select a category.';
+    if ($name === '')        $errors[] = 'Product name is required.';
+    if (!is_numeric($price)) $errors[] = 'Price must be a number.';
+    if ($category_id === '') $errors[] = 'Please select a category.';
 
-    // ── Handle image upload ───────────────────────────────
-    $imagePath = '';
+    // ── New image uploaded? ───────────────────────────────
     if (!empty($_FILES['image']['name'])) {
-        $allowed   = ['image/jpeg', 'image/png', 'image/webp', 'image/gif'];
-        $mimeType  = mime_content_type($_FILES['image']['tmp_name']);
+        $allowed  = ['image/jpeg', 'image/png', 'image/webp', 'image/gif'];
+        $mimeType = mime_content_type($_FILES['image']['tmp_name']);
 
         if (!in_array($mimeType, $allowed)) {
             $errors[] = 'Image must be JPG, PNG, WEBP or GIF.';
         } elseif ($_FILES['image']['size'] > 2 * 1024 * 1024) {
             $errors[] = 'Image must be under 2 MB.';
         } else {
-            $uploadDir = '../uploads/';
+            $uploadDir = __DIR__ . '/../../uploads/';
             if (!is_dir($uploadDir)) mkdir($uploadDir, 0755, true);
+            // delete old file if it exists
+            if (!empty($p['image']) && file_exists(__DIR__ . '/../../' . $p['image'])) {
+                unlink(__DIR__ . '/../../' . $p['image']);
+            }
             $ext       = pathinfo($_FILES['image']['name'], PATHINFO_EXTENSION);
             $filename  = uniqid('prod_') . '.' . $ext;
-            $imagePath = $uploadDir . $filename;
-            move_uploaded_file($_FILES['image']['tmp_name'], $imagePath);
+            $imagePath = 'uploads/' . $filename;
+            move_uploaded_file($_FILES['image']['tmp_name'], $uploadDir . $filename);
         }
     }
 
-    // ── Save ─────────────────────────────────────────────
     if (empty($errors)) {
-        $product = new Product();
-        $ok      = $product->create($name, (float)$price, (int)$category_id, $imagePath, $status);
+        $ok      = $product->update($id, $name, (float)$price, (int)$category_id, $imagePath, $status);
         $message = $ok ? 'success' : 'error';
-        if ($ok) { $name = $price = $category_id = $imagePath = ''; $status = 'available'; }
+        if ($ok) $p = $product->getById($id); // refresh data
+    } else {
+        // keep typed values on error
+        $p['name']        = $name;
+        $p['price']       = $price;
+        $p['category_id'] = $category_id;
+        $p['status']      = $status;
     }
 }
 
 $categoryObj = new Category();
 $categories  = $categoryObj->getAll();
 
-layout_head('Add Product', ['label' => '← Back', 'href' => '../admin/admin-products.php']);
+layout_head('Edit Product', ['label' => '← Back', 'href' => 'manage-products.php']);
 ?>
 
-    <h1 class="page-title">Add Product</h1>
-    <p class="page-sub">Fill in the details below to create a new product.</p>
+    <h1 class="page-title">Edit Product</h1>
+    <p class="page-sub">Editing <strong style="color:var(--text)"><?= htmlspecialchars($p['name']) ?></strong> — ID <strong>#<?= $id ?></strong></p>
 
 <?php if ($message === 'success'): ?>
-    <div class="notif success">✓ &nbsp;Product created successfully. <a href="admin-products.php" style="color:inherit;margin-left:8px;">View all →</a></div>
+    <div class="notif success">✓ &nbsp;Product updated successfully.</div>
 <?php elseif ($message === 'error'): ?>
     <div class="notif error">✕ &nbsp;Something went wrong. Please try again.</div>
 <?php endif; ?>
 
-<?php if (!empty($errors)): ?>
-    <?php foreach ($errors as $e): ?>
-        <div class="notif error">✕ &nbsp;<?= htmlspecialchars($e) ?></div>
-    <?php endforeach; ?>
-<?php endif; ?>
+<?php foreach ($errors as $e): ?>
+    <div class="notif error">✕ &nbsp;<?= htmlspecialchars($e) ?></div>
+<?php endforeach; ?>
 
     <div class="form-card">
         <form method="POST" enctype="multipart/form-data">
@@ -79,24 +94,22 @@ layout_head('Add Product', ['label' => '← Back', 'href' => '../admin/admin-pro
                 <div class="field full">
                     <label for="name">Product Name</label>
                     <input type="text" id="name" name="name"
-                           value="<?= htmlspecialchars($name ?? '') ?>"
-                           placeholder="e.g. Wireless Headphones" required>
+                           value="<?= htmlspecialchars($p['name']) ?>" required>
                 </div>
 
                 <!-- Price -->
                 <div class="field">
                     <label for="price">Price ($)</label>
                     <input type="number" id="price" name="price" step="0.01" min="0"
-                           value="<?= htmlspecialchars($price ?? '') ?>"
-                           placeholder="0.00" required>
+                           value="<?= htmlspecialchars($p['price']) ?>" required>
                 </div>
 
                 <!-- Status -->
                 <div class="field">
                     <label for="status">Status</label>
                     <select id="status" name="status">
-                        <option value="available"   <?= ($status ?? '') === 'available'   ? 'selected' : '' ?>>Available</option>
-                        <option value="unavailable" <?= ($status ?? '') === 'unavailable' ? 'selected' : '' ?>>Unavailable</option>
+                        <option value="available"   <?= $p['status'] === 'available'   ? 'selected' : '' ?>>Available</option>
+                        <option value="unavailable" <?= $p['status'] === 'unavailable' ? 'selected' : '' ?>>Unavailable</option>
                     </select>
                 </div>
 
@@ -107,7 +120,7 @@ layout_head('Add Product', ['label' => '← Back', 'href' => '../admin/admin-pro
                         <option value="">— Select a category —</option>
                         <?php foreach ($categories as $cat): ?>
                             <option value="<?= $cat['id'] ?>"
-                                <?= ($category_id ?? '') == $cat['id'] ? 'selected' : '' ?>>
+                                    <?= $p['category_id'] == $cat['id'] ? 'selected' : '' ?>>
                                 <?= htmlspecialchars($cat['name']) ?>
                             </option>
                         <?php endforeach; ?>
@@ -117,34 +130,42 @@ layout_head('Add Product', ['label' => '← Back', 'href' => '../admin/admin-pro
                 <!-- Image upload -->
                 <div class="field full">
                     <label>Product Image</label>
+
+                    <?php if (!empty($p['image'])): ?>
+                        <div class="current-img-wrap">
+                            <div class="current-img-label">Current image</div>
+                            <img src="<?= htmlspecialchars('../../' . $p['image']) ?>" alt="Current">
+                        </div>
+                    <?php endif; ?>
+
                     <div class="upload-zone" id="uploadZone">
                         <input type="file" name="image" id="imageInput" accept="image/*">
                         <div class="upload-icon">📷</div>
                         <div class="upload-label">
-                            <strong>Click to upload</strong> or drag & drop<br>
+                            <strong>Upload new image</strong> to replace current<br>
                             PNG, JPG, WEBP — max 2 MB
                         </div>
                     </div>
                     <div class="preview-wrap" id="previewWrap">
-                        <img id="previewImg" src="" alt="Preview">
+                        <img id="previewImg" src="" alt="New preview">
                     </div>
                 </div>
 
             </div><!-- /form-grid -->
 
             <div class="form-actions">
-                <button type="submit" class="btn-save">✓ &nbsp;Create Product</button>
-                <a href="admin-products.php" class="btn-cancel">Cancel</a>
+                <button type="submit" class="btn-save">✓ &nbsp;Save Changes</button>
+                <a href="manage-products.php" class="btn-cancel">Cancel</a>
             </div>
 
         </form>
     </div>
 
     <script>
-        const input    = document.getElementById('imageInput');
-        const preview  = document.getElementById('previewImg');
-        const wrap     = document.getElementById('previewWrap');
-        const zone     = document.getElementById('uploadZone');
+        const input   = document.getElementById('imageInput');
+        const preview = document.getElementById('previewImg');
+        const wrap    = document.getElementById('previewWrap');
+        const zone    = document.getElementById('uploadZone');
 
         input.addEventListener('change', () => {
             const file = input.files[0];

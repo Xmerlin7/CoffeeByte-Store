@@ -1,3 +1,4 @@
+DROP DATABASE IF EXISTS cafeteria_db;
 CREATE DATABASE IF NOT EXISTS cafeteria_db;
 USE cafeteria_db;
 
@@ -94,7 +95,7 @@ INSERT INTO users (name, email, password, role) VALUES
 INSERT INTO categories (name) VALUES ('Drinks'), ('Snacks'), ('Desserts');
 
 -- Products demo
-INSERT INTO products (name, price, category_id, status) VALUES
+INSERT INTO products (name, price, category_id, image,  status) VALUES
 ('Turkish Coffee', 35.00, 1, 'available'),
 ('Espresso', 30.00, 1, 'available'),
 ('Club Sandwich', 75.50, 2, 'available'),

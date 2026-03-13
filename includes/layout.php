@@ -1,22 +1,4 @@
 <?php
-/* ============================================================
-   layout.php — reusable admin layout helpers
-
-   Usage in any admin page:
-
-       $pageTitle  = 'Products';          // browser <title>
-       $headerBtn  = [                    // optional header CTA
-           'label' => '＋ Add Product',
-           'href'  => 'add_product.php'
-       ];
-       require_once 'layout.php';
-       layout_head($pageTitle, $headerBtn);
-
-       // ... your page HTML here ...
-
-       layout_foot();
-   ============================================================ */
-
 function layout_head(string $title, array $btn = []): void { ?>
     <!DOCTYPE html>
     <html lang="en">
@@ -24,7 +6,9 @@ function layout_head(string $title, array $btn = []): void { ?>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Admin — <?= htmlspecialchars($title) ?></title>
-        <link rel="stylesheet" href="../assets/css/admin-products.css">
+
+        <!-- ✅ Absolute path from web root — works from ANY subfolder depth -->
+        <link rel="stylesheet" href="/CoffeeByte-Store/assets/css/admin-products.css">
     </head>
     <body>
 

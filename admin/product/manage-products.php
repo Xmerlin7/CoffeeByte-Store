@@ -1,7 +1,8 @@
 <?php
-require_once '../classes/Database.php';
-require_once '../classes/Product.php';  // move your Product class there
-require_once '../includes/layout.php';
+require_once __DIR__ . '/../../classes/Database.php';
+require_once __DIR__ . '/../../classes/Product.php';
+require_once __DIR__ . '/../../classes/Category.php';
+require_once __DIR__ . '/../../includes/layout.php';
 
 // ── Handle delete ──────────────────────────────────────────
 $message = '';
@@ -10,11 +11,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['delete_id'])) {
     $message = $p->delete((int) $_POST['delete_id']) ? 'success' : 'error';
 }
 
-$product  = new Product();
-$products = $product->getAll();
+$product     = new Product();
+$products    = $product->getAll();
+$categoryObj = new Category();
+$categories  = $categoryObj->getAll();
 
 // ── Render ────────────────────────────────────────────────
-layout_head('Products', ['label' => '＋ Add Product', 'href' => '../admin/create-product.php']);
+layout_head('Products', ['label' => '＋ Add Product', 'href' => 'create-product.php']);
 ?>
 
     <h1 class="page-title">Products</h1>
@@ -25,6 +28,16 @@ layout_head('Products', ['label' => '＋ Add Product', 'href' => '../admin/creat
 <?php elseif ($message === 'error'): ?>
     <div class="notif error">✕ &nbsp;Something went wrong. Please try again.</div>
 <?php endif; ?>
+
+    <!-- ── Category filter ── -->
+    <div class="filter-bar" id="filterBar">
+        <button class="filter-btn active" data-cat="all">All</button>
+        <?php foreach ($categories as $cat): ?>
+            <button class="filter-btn" data-cat="<?= $cat['id'] ?>">
+                <?= htmlspecialchars($cat['name']) ?>
+            </button>
+        <?php endforeach; ?>
+    </div>
 
     <div class="table-wrap">
         <?php if (empty($products)): ?>
@@ -46,7 +59,7 @@ layout_head('Products', ['label' => '＋ Add Product', 'href' => '../admin/creat
                 </thead>
                 <tbody>
                 <?php foreach ($products as $p): ?>
-                    <tr>
+                    <tr data-cat="<?= $p['category_id'] ?>">
                         <td>
                             <div style="display:flex;align-items:center;gap:14px;">
                                 <?php if (!empty($p['image'])): ?>
@@ -61,7 +74,15 @@ layout_head('Products', ['label' => '＋ Add Product', 'href' => '../admin/creat
                             </div>
                         </td>
                         <td><span class="price">$<?= number_format((float)$p['price'], 2) ?></span></td>
-                        <td style="color:var(--muted);font-size:.85rem;"><?= htmlspecialchars($p['category_id']) ?></td>
+                        <td style="color:var(--muted);font-size:.85rem;">
+                            <?php
+                            $catName = '—';
+                            foreach ($categories as $cat) {
+                                if ($cat['id'] == $p['category_id']) { $catName = $cat['name']; break; }
+                            }
+                            echo htmlspecialchars($catName);
+                            ?>
+                        </td>
                         <td>
                             <?php
                             $cls = match(strtolower($p['status'] ?? '')) {
@@ -76,8 +97,8 @@ layout_head('Products', ['label' => '＋ Add Product', 'href' => '../admin/creat
                             <div class="actions">
                                 <a href="edit-product.php?id=<?= $p['id'] ?>" class="btn-edit">✎ Edit</a>
                                 <button
-                                        class="btn-del"
-                                        onclick="openModal(<?= $p['id'] ?>, '<?= htmlspecialchars(addslashes($p['name'])) ?>')"
+                                    class="btn-del"
+                                    onclick="openModal(<?= $p['id'] ?>, '<?= htmlspecialchars(addslashes($p['name'])) ?>')"
                                 >🗑 Delete</button>
                             </div>
                         </td>
@@ -114,6 +135,18 @@ layout_head('Products', ['label' => '＋ Add Product', 'href' => '../admin/creat
         }
         document.getElementById('deleteModal').addEventListener('click', function(e) {
             if (e.target === this) closeModal();
+        });
+
+        // ── Category filter ───────────────────────────────────
+        document.getElementById('filterBar').addEventListener('click', e => {
+            const btn = e.target.closest('.filter-btn');
+            if (!btn) return;
+            document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+            const cat = btn.dataset.cat;
+            document.querySelectorAll('tbody tr').forEach(row => {
+                row.style.display = (cat === 'all' || row.dataset.cat === cat) ? '' : 'none';
+            });
         });
     </script>
 
