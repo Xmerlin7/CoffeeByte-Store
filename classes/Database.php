@@ -2,26 +2,36 @@
 class Database {
 
     private static $instance = null;
-    private $host = "localhost";
-    private $db_name = "cafeteria_db";
+    private $host     = "localhost";
+    private $db_name  = "cafeteria_db";
     private $username = "cafeteria_admin";
     private $password = "1234";
     public $conn;
 
-    public  function  __construct(){
-        if(self::$instance !== null){
-            return self::$instance;
+    public function __construct() {
+        // If a connection already exists, reuse it
+        if (self::$instance !== null) {
+            $this->conn = self::$instance->conn;
+            return;
         }
+
         try {
-            $this->conn = new PDO("mysql:host=" . $this->host . ";dbname=" . $this->db_name, $this->username, $this->password);
-            $this->conn->exec("set names utf8");
-        } catch(PDOException $exception) {
-            echo "Connection error: " . $exception->getMessage();
+            $this->conn = new PDO(
+                "mysql:host={$this->host};dbname={$this->db_name};charset=utf8",
+                $this->username,
+                $this->password,
+                [
+                    PDO::ATTR_ERRMODE            => PDO::ERRMODE_EXCEPTION,
+                    PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC,
+                ]
+            );
+            self::$instance = $this; // save first instance
+        } catch (PDOException $e) {
+            die("Connection error: " . $e->getMessage());
         }
-        self::$instance = $this;
     }
-    public function getConnection() {
+
+    public function getConnection(): PDO {
         return $this->conn;
     }
 }
-?>

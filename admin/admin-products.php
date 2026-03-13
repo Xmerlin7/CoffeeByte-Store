@@ -1,7 +1,7 @@
 <?php
 require_once '../classes/Database.php';
 require_once '../classes/Product.php';  // move your Product class there
-require_once './layout.php';
+require_once '../includes/layout.php';
 
 // ── Handle delete ──────────────────────────────────────────
 $message = '';
@@ -14,7 +14,7 @@ $product  = new Product();
 $products = $product->getAll();
 
 // ── Render ────────────────────────────────────────────────
-layout_head('Products', ['label' => '＋ Add Product', 'href' => 'add_product.php']);
+layout_head('Products', ['label' => '＋ Add Product', 'href' => '../admin/create-product.php']);
 ?>
 
     <h1 class="page-title">Products</h1>

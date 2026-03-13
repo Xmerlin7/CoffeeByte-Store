@@ -3,7 +3,7 @@ require_once __DIR__ . '/../classes/Database.php';
 require_once __DIR__ . '/../classes/Product.php';
 require_once __DIR__ . '/../classes/Category.php';
 require_once __DIR__ . '/../includes/layout.php'; // if layout is in includes/
-require_once 'layout.php';
+require_once '../includes/layout.php';
 
 // ── Load product ──────────────────────────────────────────
 $id      = isset($_GET['id']) ? (int)$_GET['id'] : 0;
@@ -68,7 +68,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 $categoryObj = new Category();
 $categories  = $categoryObj->getAll();
 
-layout_head('Edit Product', ['label' => '← Back', 'href' => 'admin_products.php']);
+layout_head('Edit Product', ['label' => '← Back', 'href' => '../admin/admin-products.php']);
 ?>
 
     <h1 class="page-title">Edit Product</h1>
@@ -154,7 +154,7 @@ layout_head('Edit Product', ['label' => '← Back', 'href' => 'admin_products.ph
 
             <div class="form-actions">
                 <button type="submit" class="btn-save">✓ &nbsp;Save Changes</button>
-                <a href="admin_products.php" class="btn-cancel">Cancel</a>
+                <a href="admin-products.php" class="btn-cancel">Cancel</a>
             </div>
 
         </form>
