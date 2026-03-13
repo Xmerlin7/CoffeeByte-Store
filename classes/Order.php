@@ -181,6 +181,49 @@ class order{
 }
 
 
+
+    // GET ORDER ITEMS
+    
+    public function getOrderItems($order_id)
+    {
+        $stmt = $this->pdo->prepare("
+            SELECT 
+                p.name,
+                oi.quantity,
+                oi.unit_price,
+                (oi.quantity * oi.unit_price) AS subtotal
+            FROM order_items oi
+            JOIN products p ON oi.product_id = p.id
+            WHERE oi.order_id = ?
+        ");
+
+        $stmt->execute([$order_id]);
+
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 }
 
 
