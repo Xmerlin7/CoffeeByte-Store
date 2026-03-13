@@ -1,7 +1,7 @@
 <?php
 require_once "../../classes/User.php";
 require_once "../../config/functions.php";
-checkAdmin();
+// checkAdmin();
 $userObj = new User();
 $users = $userObj->getAllUsers();
 ?>
@@ -10,6 +10,7 @@ $users = $userObj->getAllUsers();
 
 <table border="1">
     <tr>
+        <th>Picture</th>
         <th>Name</th>
         <th>Email</th>
         <th>Role</th>
@@ -18,9 +19,22 @@ $users = $userObj->getAllUsers();
 
     <?php foreach ($users as $user): ?>
     <tr>
-        <td><?= $user['name'] ?></td>
-        <td><?= $user['email'] ?></td>
-        <td><?= $user['role'] ?></td>
+        <td>
+            <?php if (!empty($user['image'])): ?>
+                <img
+                    src="../../assets/uploads/users/<?= rawurlencode($user['image']) ?>"
+                    alt="<?= htmlspecialchars($user['name']) ?>"
+                    width="50"
+                    height="50"
+                    style="object-fit: cover; border-radius: 50%;"
+                >
+            <?php else: ?>
+                No image
+            <?php endif; ?>
+        </td>
+        <td><?= htmlspecialchars($user['name']) ?></td>
+        <td><?= htmlspecialchars($user['email']) ?></td>
+        <td><?= htmlspecialchars($user['role']) ?></td>
         <td>
             <a href="edit-user.php?id=<?= $user['id'] ?>">Edit</a>
             <a href="delete-user.php?id=<?= $user['id'] ?>">Delete</a>
