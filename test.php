@@ -1,13 +1,52 @@
 <?php
-require_once './classes/Database.php';
-require_once 'classes/Order.php';
+require_once 'classes/Database.php';
+require_once 'classes/Cart.php';
 
 $dbClass = new Database();
 $connection = $dbClass->getConnection();
 
-if($connection) {
-    echo "عاش يا سيف! الداتابيز متصلة وزي الفل.";
-}
+$user_id = 2;
 
-$o = new order($connection, 1, 100.50, 'processing', 'Please deliver between 5-6 PM', date('Y-m-d H:i:s'));
-$o->save();
+if ($connection) {
+    echo "عاش يا سيف! الداتابيز متصلة وزي الفل.";
+
+    echo "<br/>";
+    echo "<br/>";
+    echo "<br/>";
+    echo "============ Cart Operations Test ============";
+    echo "<br/>";
+    echo "<br/>";
+    echo "<br/>";
+
+
+    // // cart object
+    $cart = new Cart($connection, $user_id);
+
+    // // add product
+    // $cart->addProduct(1,1);
+    // $cart->addProduct(2,3);
+
+    // // update product
+    $cart->updateQuantity(2, 6);
+
+    // // remove product
+    // $cart->removeProduct(2);
+
+    echo "<br/>";
+    echo "<br/>";
+
+    // // get cart items
+    var_dump($cart->getItems());
+
+    echo "<br/>";
+    echo "<br/>";
+
+    // // get total price
+    var_dump($cart->getTotal());
+
+    echo "<br/>";
+    echo "<br/>";
+
+    // // get total count
+    var_dump($cart->getCount());
+}
