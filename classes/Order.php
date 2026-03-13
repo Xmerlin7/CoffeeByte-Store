@@ -228,6 +228,29 @@ class order{
     }
 
 
+    
+    // ADMIN: GET ALL ORDERS
+    
+    public function getAllOrders(){
+        $stmt = $this->pdo->prepare("
+            SELECT 
+                o.id,
+                u.name AS user,
+                r.room_number,
+                o.total_price,
+                o.status,
+                o.order_date
+            FROM orders o
+            JOIN users u ON o.user_id = u.id
+            LEFT JOIN rooms r ON o.room_id = r.id
+            ORDER BY o.order_date DESC
+        ");
+
+        $stmt->execute();
+
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
+
 
 
 
