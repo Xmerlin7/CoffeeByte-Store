@@ -148,9 +148,8 @@ class order{
     }
 
     // GET USER ORDERS
-    
-    public function getUserOrders()
-    {
+
+    public function getUserOrders(){
         $stmt = $this->pdo->prepare("
             SELECT o.*, r.room_number
             FROM orders o
@@ -164,6 +163,22 @@ class order{
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
 
+
+    // FILTER ORDERS BY DATE
+
+    public function getOrdersByDateRange($from, $to){
+
+        $stmt = $this->pdo->prepare("
+            SELECT *
+            FROM orders
+            WHERE user_id = ?
+            AND DATE(order_date) BETWEEN ? AND ?
+        ");
+
+        $stmt->execute([$this->user_id, $from, $to]);
+
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+}
 
 
 }
