@@ -1,13 +1,6 @@
 <?php
 require_once 'Database.php';
 
-$db = new Database();
-$conn = $db->getConnection();
-$query="select * from users";
-$sqlQuery = $conn->prepare($query);
-$sqlQuery->execute();
-$result = $sqlQuery->fetchAll(PDO::FETCH_ASSOC);
-var_dump($result);
 
 class Product{
     private $conn;
