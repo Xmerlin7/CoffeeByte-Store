@@ -228,7 +228,7 @@ class order{
     }
 
 
-    
+
     // ADMIN: GET ALL ORDERS
     
     public function getAllOrders(){
@@ -253,7 +253,25 @@ class order{
 
 
 
+    // ADMIN: UPDATE ORDER STATUS
+    
+    public function updateStatus($order_id, $status){
+        $allowed = ['processing','out_for_delivery','delivered'];
 
+        if(!in_array($status, $allowed)){
+            return false;
+        }
+
+        $stmt = $this->pdo->prepare("
+            UPDATE orders
+            SET status = ?
+            WHERE id = ?
+        ");
+
+        return $stmt->execute([$status,$order_id]);
+    }
+
+}
 
 
 
