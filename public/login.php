@@ -1,12 +1,14 @@
 <!DOCTYPE html>
 <html lang="en" data-bs-theme="dark">
+
 <head>
-  <meta charset="UTF-8"/>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Login</title>
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"/>
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet"/>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet" />
 </head>
+
 <body class="bg-body-tertiary min-vh-100 d-flex align-items-center justify-content-center">
   <div class="card border-0 shadow-lg rounded-4" style="width:100%;max-width:420px">
     <div class="card-body p-5">
@@ -24,7 +26,7 @@
           <?= htmlspecialchars($_GET['message']) ?>
         </div>
       <?php endif; ?>
-
+      <!-- This form submits to render_login.php to handle the login logic  make it render home page is the user existed in oud db-->
       <form action="../includes/render_login.php" method="POST">
         <div class="mb-3">
           <label class="form-label small fw-semibold">Email address</label>
@@ -33,21 +35,21 @@
               <i class="bi bi-envelope text-body-secondary"></i>
             </span>
             <input type="email" name="email" class="form-control border-start-0 bg-body-secondary ps-0"
-                   placeholder="you@example.com" autocomplete="email" required/>
+              placeholder="you@example.com" autocomplete="email" required />
           </div>
         </div>
 
         <div class="mb-3">
           <div class="d-flex justify-content-between">
             <label class="form-label small fw-semibold">Password</label>
-            <a href="resetPassword.php" class="small text-primary text-decoration-none">Forgot password?</a>
+            <a href="resetPassword.php" class="small text-primary text-decoration-none">reset password?</a>
           </div>
           <div class="input-group">
             <span class="input-group-text bg-body-secondary border-end-0">
               <i class="bi bi-lock text-body-secondary"></i>
             </span>
             <input type="password" name="password" class="form-control border-start-0 bg-body-secondary ps-0"
-                   placeholder="••••••••" autocomplete="current-password" required/>
+              placeholder="••••••••" autocomplete="current-password" required />
           </div>
         </div>
 
@@ -61,4 +63,5 @@
     </div>
   </div>
 </body>
+
 </html>
