@@ -16,7 +16,7 @@ class order{
 
      
     // constructor
-    public function __construct($pdo,$user_id, $total_price, $status, $notes, $order_date){
+    public function __construct($pdo, $user_id = null, $total_price = null, $status = null, $notes = null, $order_date = null){
         $this->pdo = $pdo;
         $this->user_id = $user_id;
         $this->total_price = $total_price;
@@ -105,12 +105,17 @@ class order{
                 VALUES (?, ?, ?, ?)
             ");
 
-            $stmt->execute([
-                $this->user_id,
-                $room_id,
-                $total,
-                $notes
-            ]);
+                $res = $stmt->execute([
+                    $this->user_id,
+                    $room_id,
+                    $total,
+                    $notes
+                ]);
+
+                if (!$res) {
+                    $err = $stmt->errorInfo();
+                    throw new Exception('Insert order failed: ' . ($err[2] ?? 'unknown'));
+                }
 
             $order_id = $this->pdo->lastInsertId();
 
@@ -121,12 +126,17 @@ class order{
             ");
 
             foreach($items as $item){
-                $stmt->execute([
-                    $order_id,
-                    $item['product_id'],
-                    $item['quantity'],
-                    $item['unit_price']
-                ]);
+                    $res = $stmt->execute([
+                        $order_id,
+                        $item['product_id'],
+                        $item['quantity'],
+                        $item['unit_price']
+                    ]);
+
+                    if (!$res) {
+                        $err = $stmt->errorInfo();
+                        throw new Exception('Insert order_item failed: ' . ($err[2] ?? 'unknown'));
+                    }
             }
 
             /**
@@ -143,7 +153,8 @@ class order{
         } catch(Exception $e){
 
             $this->pdo->rollBack();
-            return false;
+                echo "CreateOrder error: " . $e->getMessage();
+                return false;
         }
     }
 
@@ -289,7 +300,6 @@ class order{
 
 
 
-}
 
 
 
