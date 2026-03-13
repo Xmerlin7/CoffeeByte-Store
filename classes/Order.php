@@ -61,9 +61,8 @@ class order{
     // method to save the order to the database
     
     // CREATE ORDER FROM CART
-    
-    public function createOrder($room_id, $notes = null)
-    {
+
+    public function createOrder($room_id, $notes = null){
         try {
 
             $this->pdo->beginTransaction();
@@ -148,23 +147,24 @@ class order{
         }
     }
 
+    // GET USER ORDERS
+    
+    public function getUserOrders()
+    {
+        $stmt = $this->pdo->prepare("
+            SELECT o.*, r.room_number
+            FROM orders o
+            LEFT JOIN rooms r ON o.room_id = r.id
+            WHERE o.user_id = ?
+            ORDER BY o.order_date DESC
+        ");
 
-    public function updateStatus($new_status){
-        $sql = "UPDATE orders SET status = :status WHERE id = :id";
-        $stmt = $this->pdo->prepare($sql);
-        $result = $stmt->execute([
-            ':status' => $new_status,
-            ':id' => $this->id
-        ]);
+        $stmt->execute([$this->user_id]);
 
-        if($result){
-            echo "Order status updated successfully";
-        }else{
-            echo "Error updating order status";
-        }
-
-        $this->pdo = null;
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
+
+
 
 }
 
