@@ -184,8 +184,7 @@ class order{
 
     // GET ORDER ITEMS
     
-    public function getOrderItems($order_id)
-    {
+    public function getOrderItems($order_id){
         $stmt = $this->pdo->prepare("
             SELECT 
                 p.name,
@@ -202,6 +201,31 @@ class order{
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
 
+
+    // CANCEL ORDER
+    
+    public function cancelOrder($order_id){
+        $stmt = $this->pdo->prepare("
+            SELECT status
+            FROM orders
+            WHERE id = ? AND user_id = ?
+        ");
+
+        $stmt->execute([$order_id, $this->user_id]);
+        $order = $stmt->fetch(PDO::FETCH_ASSOC);
+
+        if(!$order || $order['status'] !== 'processing'){
+            return false;
+        }
+
+        $stmt = $this->pdo->prepare("
+            UPDATE orders
+            SET status = 'cancelled'
+            WHERE id = ?
+        ");
+
+        return $stmt->execute([$order_id]);
+    }
 
 
 
