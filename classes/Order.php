@@ -5,8 +5,10 @@
 
 class order{
     // properties 
+    private $pdo;
     private $id;
     private $user_id;
+    private $room_id;
     private $total_price;
     private $status;
     private $notes;
@@ -23,7 +25,7 @@ class order{
         $this->order_date = $order_date;
     }
 
-    // getters and setters
+    // getters 
     public function getId(){
         return $this->id;
     }
@@ -43,6 +45,14 @@ class order{
         return $this->order_date;
     }
 
+
+    // setters 
+    public function setStatus($status){
+        $this->status = $status;
+    }
+    public function setNotes($notes){
+        $this->notes = $notes;
+    }
 
     // method to save the order to the database
     public function save(){
