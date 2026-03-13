@@ -36,9 +36,9 @@ class User {
     }
 
     public function updateUser($id, $data) {
-        $sql = "UPDATE users SET name=?, email=?, role=? WHERE id=?";
+        $sql = "UPDATE users SET name=?, email=?, image=?, role=? WHERE id=?";
         $stmt = $this->conn->prepare($sql);
-        $stmt->execute([$data['name'], $data['email'], $data['role'], $id]);
+        $stmt->execute([$data['name'], $data['email'], $data['image'], $data['role'], $id]);
     }
 
     public function deleteUser($id) {
