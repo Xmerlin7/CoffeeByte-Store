@@ -3,7 +3,7 @@
 // create the Order class
 
 
-class order{
+class Order{
     // properties 
     private $pdo;
     private $id;

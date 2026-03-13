@@ -8,10 +8,10 @@ class Database {
 
     public function __construct() {
         // If a connection already exists, reuse it
-        if (self::$instance !== null) {
-            $this->conn = self::$instance->conn;
-            return;
-        }
+        // if (self::$instance !== null) {
+        //     $this->conn = self::$instance->conn;
+        //     return;
+        // }
 
         try {
             $this->conn = new PDO(
@@ -23,7 +23,7 @@ class Database {
                     PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC,
                 ]
             );
-            self::$instance = $this; // save first instance
+            // self::$instance = $this; // save first instance
         } catch (PDOException $e) {
             die("Connection error: " . $e->getMessage());
         }

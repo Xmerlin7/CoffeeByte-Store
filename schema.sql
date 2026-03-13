@@ -95,13 +95,12 @@ INSERT INTO users (name, email, password, role) VALUES
 INSERT INTO categories (name) VALUES ('Drinks'), ('Snacks'), ('Desserts');
 
 -- Products demo
-INSERT INTO products (name, price, category_id, image,  status) VALUES
-('Turkish Coffee', 35.00, 1, 'available'),
-('Espresso', 30.00, 1, 'available'),
-('Club Sandwich', 75.50, 2, 'available'),
-('Cheese Sandwich', 60.00, 2, 'available'),
-('Chocolate Cake', 50.00, 3, 'available'),
-('Cupcake', 25.00, 3, 'available');
+INSERT INTO products (name, price, category_id, image, status) VALUES
+('Latte', 40.00, 1, 'images/latte.jpg', 'available'),
+('Cappuccino', 38.00, 1, 'images/cappuccino.jpg', 'available'),
+('Veggie Sandwich', 55.00, 2, 'images/veggie_sandwich.jpg', 'available'),
+('Brownie', 30.00, 3, 'images/brownie.jpg', 'available'),
+('Muffin', 28.00, 3, 'images/muffin.jpg', 'available');
 
 -- Orders demo
 INSERT INTO orders (user_id, room_id, total_price, status, notes) VALUES
@@ -127,5 +126,5 @@ INSERT INTO cart_items (cart_id, product_id, quantity, unit_price) VALUES
 (1, 1, 1, 35.00),
 (1, 3, 1, 75.50),
 (2, 4, 2, 60.00),
-(3, 6, 3, 25.00),
-(4, 1, 1, 35.00);
+(3, 5, 3, 25.00),
+(4, 2, 1, 35.00);
