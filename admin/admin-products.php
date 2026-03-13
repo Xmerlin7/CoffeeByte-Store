@@ -74,7 +74,7 @@ layout_head('Products', ['label' => '＋ Add Product', 'href' => 'add_product.ph
                         </td>
                         <td>
                             <div class="actions">
-                                <a href="edit_product.php?id=<?= $p['id'] ?>" class="btn-edit">✎ Edit</a>
+                                <a href="edit-product.php?id=<?= $p['id'] ?>" class="btn-edit">✎ Edit</a>
                                 <button
                                         class="btn-del"
                                         onclick="openModal(<?= $p['id'] ?>, '<?= htmlspecialchars(addslashes($p['name'])) ?>')"
