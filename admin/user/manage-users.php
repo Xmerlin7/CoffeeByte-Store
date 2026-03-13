@@ -1,6 +1,7 @@
 <?php
 require_once "../../classes/User.php";
-
+require_once "../../config/functions.php";
+checkAdmin();
 $userObj = new User();
 $users = $userObj->getAllUsers();
 ?>
