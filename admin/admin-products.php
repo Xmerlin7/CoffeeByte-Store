@@ -1,7 +1,7 @@
 <?php
 require_once '../classes/Database.php';
 require_once '../classes/Product.php';  // move your Product class there
-require_once './layout.php';
+require_once '../includes/layout.php';
 
 // ── Handle delete ──────────────────────────────────────────
 $message = '';
@@ -14,7 +14,7 @@ $product  = new Product();
 $products = $product->getAll();
 
 // ── Render ────────────────────────────────────────────────
-layout_head('Products', ['label' => '＋ Add Product', 'href' => 'add_product.php']);
+layout_head('Products', ['label' => '＋ Add Product', 'href' => '../admin/create-product.php']);
 ?>
 
     <h1 class="page-title">Products</h1>
@@ -74,7 +74,7 @@ layout_head('Products', ['label' => '＋ Add Product', 'href' => 'add_product.ph
                         </td>
                         <td>
                             <div class="actions">
-                                <a href="edit_product.php?id=<?= $p['id'] ?>" class="btn-edit">✎ Edit</a>
+                                <a href="edit-product.php?id=<?= $p['id'] ?>" class="btn-edit">✎ Edit</a>
                                 <button
                                         class="btn-del"
                                         onclick="openModal(<?= $p['id'] ?>, '<?= htmlspecialchars(addslashes($p['name'])) ?>')"
