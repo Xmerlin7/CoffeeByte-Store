@@ -1,0 +1,97 @@
+/* Container title */
+
+.container h2 {
+  color: #6f4e37;
+  font-weight: 700;
+  margin-bottom: 20px;
+}
+
+/* Card layout */
+
+.card {
+  background: white;
+  padding: 25px;
+  border-radius: 16px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+}
+
+/* Table styling */
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 15px;
+}
+
+thead {
+  background: #2f2a26;
+  color: white;
+}
+
+th,
+td {
+  padding: 12px;
+  text-align: left;
+}
+
+tbody tr {
+  border-bottom: 1px solid #eee;
+}
+
+tbody tr:hover {
+  background: #fafafa;
+}
+
+/* Status badge */
+
+.status-badge {
+  padding: 5px 12px;
+  border-radius: 20px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  background: #f3e8dd;
+  color: #6f4e37;
+}
+
+/* Update form */
+
+.update-form {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+
+/* Select dropdown */
+
+.update-form select {
+  border-radius: 8px;
+  border: 1px solid #ddd;
+  padding: 6px 10px;
+  font-size: 0.9rem;
+}
+
+/* Update button */
+
+.update-form button {
+  background: #6f4e37;
+  color: white;
+  border: none;
+  padding: 6px 12px;
+  border-radius: 8px;
+  font-size: 0.9rem;
+  transition: all 0.2s ease;
+}
+
+.update-form button:hover {
+  background: #563b2a;
+}
+
+/* Alert */
+
+.alert {
+  background: #e8f5e9;
+  color: #2e7d32;
+  padding: 12px 15px;
+  border-radius: 10px;
+  margin-bottom: 20px;
+}

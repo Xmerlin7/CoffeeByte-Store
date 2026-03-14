@@ -19,6 +19,6 @@
                 <p>info@cafearoma.com</p>
             </div>
         </div>
-        <div class="footer-bottom">© <?= date('Y') ?> Cafe Aroma</div>
+        <div class="footer-bottom">© <?= date('Y') ?>CoffeeByte</div>
     </div>
 </footer>
