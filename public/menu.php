@@ -36,8 +36,6 @@ $products = $p->getAll();
     </div>
 </div>
 
-<a href="./cart.php">View Cart</a>
-
 <script src="../assets/js/cart.js"></script>
 
 <?php

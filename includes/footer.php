@@ -8,9 +8,10 @@
             <div class="col-md-4">
                 <h5>Links</h5>
                 <ul class="list-unstyled">
-                    <li><a href="#">Menu</a></li>
-                    <li><a href="#">About</a></li>
-                    <li><a href="#">Contact</a></li>
+                    <li><a href="/public/home.php">Home</a></li>
+                    <li><a href="/public/menu.php">Menu</a></li>
+                    <li><a href="/public/cart.php">Cart</a></li>
+                    <li><a href="/public/orders.php">Orders</a></li>
                 </ul>
             </div>
             <div class="col-md-4">
@@ -18,6 +19,6 @@
                 <p>info@cafearoma.com</p>
             </div>
         </div>
-        <div class="footer-bottom">© 2026 Cafe Aroma</div>
+        <div class="footer-bottom">© <?= date('Y') ?> Cafe Aroma</div>
     </div>
 </footer>
