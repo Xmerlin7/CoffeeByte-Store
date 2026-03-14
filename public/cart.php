@@ -1,5 +1,5 @@
 <?php
-$title = "Cafe - Your Cart";
+$title = "CoffeeByte - Your Cart";
 ob_start();
 ?>
 

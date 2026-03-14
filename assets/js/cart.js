@@ -1,5 +1,5 @@
 function addToCart(productId) {
-    fetch("../../features/cart/add.php", {
+    fetch("/features/cart/add.php", {
         method: "POST",
         headers: {
             "Content-Type": "application/x-www-form-urlencoded"
@@ -27,7 +27,7 @@ function decrease(productId) {
 }
 
 function update(productId, qty) {
-    fetch("../../features/cart/update.php", {
+    fetch("/features/cart/update.php", {
         method: "POST",
         headers: {
             "Content-Type": "application/x-www-form-urlencoded"
@@ -43,7 +43,7 @@ function update(productId, qty) {
 }
 
 function removeItem(productId) {
-    fetch("../../features/cart/remove.php", {
+    fetch("/features/cart/remove.php", {
         method: "POST",
         headers: {
             "Content-Type": "application/x-www-form-urlencoded"
@@ -88,7 +88,7 @@ function renderControls(productId, quantity){
 }
 
 function loadCartState(){
-    fetch("../../features/cart/get.php??action=state")
+    fetch("/features/cart/get.php??action=state")
     .then(res => res.json())
     .then(items => {
         items.forEach(item => {

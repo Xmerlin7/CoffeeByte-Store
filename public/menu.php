@@ -2,7 +2,7 @@
 session_start();
 require "../classes/Product.php";
 
-$title = "Cafe - Our Menu";
+$title = "CoffeeByte - Our Menu";
 ob_start();
 
 $p = new Product();

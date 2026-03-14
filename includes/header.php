@@ -1,9 +1,9 @@
 <nav class="navbar navbar-expand-lg navbar-cafe">
   <div class="container">
-    <a class="navbar-brand" href="/public/home">☕CoffeeByte</a>
+    <a class="navbar-brand" href="/public/home.php">☕ CoffeeByte</a>
     
-    <button class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#nav">
-      <i class="fa-solid fa-bars"></i>
+    <button class="navbar-toggler border-white" data-bs-toggle="collapse" data-bs-target="#nav">
+      <i class="fa-solid fa-bars text-white"></i>
     </button>
 
     <div class="collapse navbar-collapse" id="nav">
