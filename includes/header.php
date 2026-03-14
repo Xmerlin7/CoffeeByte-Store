@@ -1,16 +1,26 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cafeteria System</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="../assets/css/style.css">
-</head>
-<body>
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+<nav class="navbar navbar-expand-lg navbar-cafe">
   <div class="container">
-    <a class="navbar-brand" href="#">Cafeteria</a>
+    <a class="navbar-brand" href="/public/home">☕ Cafe Aroma</a>
+    
+    <button class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#nav">
+      <i class="fa-solid fa-bars"></i>
+    </button>
+
+    <div class="collapse navbar-collapse" id="nav">
+      <ul class="navbar-nav ms-auto">
+        <li class="nav-item">
+          <a class="nav-link" href="/public/home.php">Home</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/public/menu.php">Menu</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/public/cart.php">Cart</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/public/order.php">Orders</a>
+        </li>
+      </ul>
     </div>
+  </div>
 </nav>
-<div class="container mt-4">
