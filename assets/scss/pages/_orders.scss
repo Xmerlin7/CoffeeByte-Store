@@ -1,0 +1,137 @@
+/* Page Title */
+
+.container h1 {
+  margin-bottom: 25px;
+  font-weight: 700;
+  color: #2f2a26;
+}
+
+/* Card Layout */
+
+.card {
+  background: white;
+  padding: 25px;
+  border-radius: 16px;
+  margin-bottom: 25px;
+
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+  button {
+    width: fit-content;
+    margin-inline-start: auto;
+  }
+}
+
+.card h2 {
+  margin-bottom: 18px;
+  font-size: 1.4rem;
+  color: #6f4e37;
+}
+
+/* Form */
+
+.order-form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+}
+
+.form-group label {
+  font-size: 0.9rem;
+  margin-bottom: 5px;
+  font-weight: 600;
+}
+
+.form-group input {
+  border-radius: 10px;
+  border: 1px solid #ddd;
+  padding: 10px;
+
+  transition: all 0.2s ease;
+}
+
+.form-group input:focus {
+  border-color: #6f4e37;
+  box-shadow: 0 0 0 3px rgba(111, 78, 55, 0.15);
+}
+
+/* Table */
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+thead {
+  background: #2f2a26;
+  color: white;
+}
+
+th,
+td {
+  padding: 12px;
+  text-align: left;
+}
+
+tbody tr {
+  border-bottom: 1px solid #eee;
+}
+
+tbody tr:hover {
+  background: #fafafa;
+}
+
+/* Status */
+
+.status-pill {
+  padding: 5px 12px;
+  border-radius: 20px;
+  font-size: 0.8rem;
+  font-weight: 600;
+
+  background: #f0e6dc;
+  color: #6f4e37;
+}
+
+/* Alert */
+
+.alert {
+  background: #e8f5e9;
+  color: #2e7d32;
+  padding: 12px 15px;
+  border-radius: 10px;
+  margin-bottom: 20px;
+}
+
+/* Buttons */
+
+.btn {
+  padding: 8px 14px;
+  border-radius: 10px;
+  font-size: 0.9rem;
+  border: none;
+}
+
+.btn-primary {
+  background: #6f4e37;
+  color: white;
+}
+
+.btn-primary:hover {
+  background: #5b3f2d;
+}
+
+.btn-outline-danger {
+  border: 1px solid #c0392b;
+  color: #c0392b;
+  background: transparent;
+}
+
+.btn-outline-danger:hover {
+  background: #c0392b;
+  color: white;
+}
