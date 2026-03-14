@@ -1,14 +1,9 @@
 <?php
 session_start();
-require "classes/Database.php";
+require "../classes/Product.php";
 
-$db = (new Database())->getConnection();
-
-$stmt = $db->prepare("SELECT id, name, price FROM products");
-$stmt->execute();
-
-$products = $stmt->fetchAll(PDO::FETCH_ASSOC);
-
+$p = new Product();
+$products = $p->getAll();
 ?>
 
 <h2>Products</h2>
@@ -26,6 +21,6 @@ $products = $stmt->fetchAll(PDO::FETCH_ASSOC);
 <hr>
 <?php endforeach; ?>
 
-<a href="./public/cart.php">View Cart</a>
+<a href="./cart.php">View Cart</a>
 
-<script src="./assets/js/cart.js"></script>
+<script src="../assets/js/cart.js"></script>
