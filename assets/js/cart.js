@@ -62,17 +62,26 @@ function renderControls(productId, quantity){
     let container = document.getElementById("cart-" + productId)
     if(quantity > 0){
     container.innerHTML = `
-        <button onclick="decrease(${productId})">-</button>
-        <span id="qty-${productId}">
-        ${quantity}
-        </span>
-        <button onclick="increase(${productId})">+</button>
-        <button onclick="removeItem(${productId})">Remove</button>
+        <div class="cart-controls">
+            <button onclick="decrease(${productId})">
+                <i class="fa-solid fa-minus"></i>
+            </button>
+            <span id="qty-${productId}">
+            ${quantity}
+            </span>
+            <button onclick="increase(${productId})">
+                <i class="fa-solid fa-plus"></i>
+            </button>
+            <button class="remove-btn" onclick="removeItem(${productId})">
+                <i class="fa-solid fa-trash"></i>
+            </button>
+        </div>
     `
     } else {
     container.innerHTML = `
-        <button onclick="addToCart(${productId})">
-        Add to Cart
+        <button class="btn-coffee" onclick="addToCart(${productId})">
+            <i class="fa-solid fa-cart-arrow-down"></i>
+            Add to Cart
         </button>
     `
     }
