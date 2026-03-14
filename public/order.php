@@ -45,14 +45,12 @@ if(isset($_POST['cancel'])){
 $userOrders = $order->getUserOrders();
 ?>
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CoffeeByte - My Orders</title>
+<?php
+$title = "CoffeeByte - My Orders";
+ob_start();
+?>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
-    <style>
+    <!-- <style>
         :root {
             --primary: #6F4E37;
             --accent: #A67B5B;
@@ -62,14 +60,7 @@ $userOrders = $order->getUserOrders();
             --success: #27ae60;
         }
 
-        body {
-            font-family: 'Inter', sans-serif;
-            background-color: var(--bg);
-            color: var(--text);
-            margin: 0;
-            padding: 40px 20px;
-        }
-
+  
         .container {
             max-width: 900px;
             margin: 0 auto;
@@ -163,16 +154,17 @@ $userOrders = $order->getUserOrders();
             background: var(--danger);
             color: white;
         }
-    </style>
-</head>
-<body>
+    </style> -->
+
+
 
 <div class="container">
-    <h1>CoffeeByte Orders</h1>
+    <h1 class='mt-3'>CoffeeByte Orders</h1>
 
     <?php if($message): ?>
         <div class="alert"><?= htmlspecialchars($message) ?></div>
     <?php endif; ?>
+
 
     <div class="card">
         <h2>Place New Order</h2>
@@ -230,6 +222,7 @@ $userOrders = $order->getUserOrders();
         </table>
     </div>
 </div>
-
-</body>
-</html>
+<?php
+$content = ob_get_clean();
+include "../layouts/main.php";
+?>

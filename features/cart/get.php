@@ -13,16 +13,16 @@ $cart = new Cart($db,$user_id);
 
 $items = $cart->getItems();
 
-if ($action == "state") {
-    $result = [];
-    foreach($items as $item){
-        $result[] = [
-            "product_id"=>$item["id"],
-            "quantity"=>$item["quantity"]
-        ];  
-    }
-    echo json_encode($result);
-} else {
+if (!$action || $action != "state" ) {
     echo json_encode($items);
-}
+    } else {
+        $result = [];
+        foreach($items as $item){
+            $result[] = [
+                "product_id"=>$item["id"],
+                "quantity"=>$item["quantity"]
+            ];  
+        }
+        echo json_encode($result);
+        }
 ?>
