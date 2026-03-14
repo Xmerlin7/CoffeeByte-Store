@@ -2,7 +2,7 @@
 
 <div id="cart-info"></div>
 
-<a href="../products-test.php">Products</a>
+<a href="./products.php">Products</a>
 
 <script src="../assets/js/cart.js"></script>
 <script src="../assets/js/cart-view.js"></script>
