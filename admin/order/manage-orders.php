@@ -1,6 +1,6 @@
 <?php  
-require_once 'D:\laragon\www\myprojects\CoffeeByte-Store\classes\Database.php';
-require_once 'D:\laragon\www\myprojects\CoffeeByte-Store\classes\Order.php';
+require_once '../../classes/Database.php';
+require_once '../../classes/Order.php';
 
 // 1. INITIALIZE DATABASE & CLASSES
 $db = new Database();
