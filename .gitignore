@@ -7,3 +7,4 @@ assets/uploads/*
 # Ignore OS junk
 .DS_Store
 Thumbs.db
+Database.php
