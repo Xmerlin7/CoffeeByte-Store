@@ -11,7 +11,7 @@ $pdo = $dbClass->getConnection();
 // TEST USER
 // ============================
 // use an existing user from the database
-$user_id = 1;
+$user_id = 5;
 $Order = new Order($pdo, $user_id);
 
 // ============================
@@ -19,7 +19,7 @@ $Order = new Order($pdo, $user_id);
 // ============================
 echo "<h2>Test Create Order</h2>";
 
-$room_id = 1;
+$room_id = 2;
 $notes = "Testing order creation";
 
 $order_id = $Order->createOrder($room_id, $notes);
