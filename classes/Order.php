@@ -62,101 +62,202 @@ class Order{
     
     // CREATE ORDER FROM CART
 
+    // public function createOrder($room_id, $notes = null){
+    //     try {
+
+    //         $this->pdo->beginTransaction();
+
+    //         // get user's cart
+    //         $stmt = $this->pdo->prepare("SELECT id FROM carts WHERE user_id = ?");
+    //         $stmt->execute([$this->user_id]);
+
+    //         $cart = $stmt->fetch(PDO::FETCH_ASSOC);
+
+    //         if(!$cart){
+    //             throw new Exception("Cart not found");
+    //         }
+
+    //         $cart_id = $cart['id'];
+
+    //         // get cart items
+    //         $stmt = $this->pdo->prepare("
+    //             SELECT product_id, quantity, unit_price
+    //             FROM cart_items
+    //             WHERE cart_id = ?
+    //         ");
+    //         $stmt->execute([$cart_id]);
+
+    //         $items = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+    //         if(!$items){
+    //             throw new Exception("Cart is empty");
+    //         }
+
+    //         // calculate total price
+    //         $total = 0;
+    //         foreach($items as $item){
+    //             $total += $item['quantity'] * $item['unit_price'];
+    //         }
+
+    //         // create order
+    //         $stmt = $this->pdo->prepare("
+    //             INSERT INTO orders (user_id, room_id, total_price, notes)
+    //             VALUES (?, ?, ?, ?)
+    //         ");
+
+    //             $res = $stmt->execute([
+    //                 $this->user_id,
+    //                 $room_id,
+    //                 $total,
+    //                 $notes
+    //             ]);
+
+    //             if (!$res) {
+    //                 $err = $stmt->errorInfo();
+    //                 throw new Exception('Insert order failed: ' . ($err[2] ?? 'unknown'));
+    //             }
+
+    //         $order_id = $this->pdo->lastInsertId();
+
+    //         // insert order items
+    //         $stmt = $this->pdo->prepare("
+    //             INSERT INTO order_items (order_id, product_id, quantity, unit_price)
+    //             VALUES (?, ?, ?, ?)
+    //         ");
+
+    //         foreach($items as $item){
+    //                 $res = $stmt->execute([
+    //                     $order_id,
+    //                     $item['product_id'],
+    //                     $item['quantity'],
+    //                     $item['unit_price']
+    //                 ]);
+
+    //                 if (!$res) {
+    //                     $err = $stmt->errorInfo();
+    //                     throw new Exception('Insert order_item failed: ' . ($err[2] ?? 'unknown'));
+    //                 }
+    //         }
+
+    //         /**
+    //          * IMPORTANT TEAM NOTE (Dev5 -> Dev4)
+    //          * Cart is cleared after checkout
+    //          */
+    //         $stmt = $this->pdo->prepare("DELETE FROM cart_items WHERE cart_id = ?");
+    //         $stmt->execute([$cart_id]);
+
+    //         $this->pdo->commit();
+
+    //         return $order_id;
+
+    //     } catch(Exception $e){
+
+    //         $this->pdo->rollBack();
+    //             echo "CreateOrder error: " . $e->getMessage();
+    //             return false;
+    //     }
+    // }
+
     public function createOrder($room_id, $notes = null){
-        try {
+    try {
 
-            $this->pdo->beginTransaction();
+        $this->pdo->beginTransaction();
 
-            // get user's cart
-            $stmt = $this->pdo->prepare("SELECT id FROM carts WHERE user_id = ?");
-            $stmt->execute([$this->user_id]);
+        // get user's cart
+        $stmt = $this->pdo->prepare("SELECT id FROM carts WHERE user_id = ?");
+        $stmt->execute([$this->user_id]);
 
-            $cart = $stmt->fetch(PDO::FETCH_ASSOC);
+        $cart = $stmt->fetch(PDO::FETCH_ASSOC);
 
-            if(!$cart){
-                throw new Exception("Cart not found");
-            }
-
-            $cart_id = $cart['id'];
-
-            // get cart items
-            $stmt = $this->pdo->prepare("
-                SELECT product_id, quantity, unit_price
-                FROM cart_items
-                WHERE cart_id = ?
-            ");
-            $stmt->execute([$cart_id]);
-
-            $items = $stmt->fetchAll(PDO::FETCH_ASSOC);
-
-            if(!$items){
-                throw new Exception("Cart is empty");
-            }
-
-            // calculate total price
-            $total = 0;
-            foreach($items as $item){
-                $total += $item['quantity'] * $item['unit_price'];
-            }
-
-            // create order
-            $stmt = $this->pdo->prepare("
-                INSERT INTO orders (user_id, room_id, total_price, notes)
-                VALUES (?, ?, ?, ?)
-            ");
-
-                $res = $stmt->execute([
-                    $this->user_id,
-                    $room_id,
-                    $total,
-                    $notes
-                ]);
-
-                if (!$res) {
-                    $err = $stmt->errorInfo();
-                    throw new Exception('Insert order failed: ' . ($err[2] ?? 'unknown'));
-                }
-
-            $order_id = $this->pdo->lastInsertId();
-
-            // insert order items
-            $stmt = $this->pdo->prepare("
-                INSERT INTO order_items (order_id, product_id, quantity, unit_price)
-                VALUES (?, ?, ?, ?)
-            ");
-
-            foreach($items as $item){
-                    $res = $stmt->execute([
-                        $order_id,
-                        $item['product_id'],
-                        $item['quantity'],
-                        $item['unit_price']
-                    ]);
-
-                    if (!$res) {
-                        $err = $stmt->errorInfo();
-                        throw new Exception('Insert order_item failed: ' . ($err[2] ?? 'unknown'));
-                    }
-            }
-
-            /**
-             * IMPORTANT TEAM NOTE (Dev5 -> Dev4)
-             * Cart is cleared after checkout
-             */
-            $stmt = $this->pdo->prepare("DELETE FROM cart_items WHERE cart_id = ?");
-            $stmt->execute([$cart_id]);
-
-            $this->pdo->commit();
-
-            return $order_id;
-
-        } catch(Exception $e){
-
-            $this->pdo->rollBack();
-                echo "CreateOrder error: " . $e->getMessage();
-                return false;
+        if(!$cart){
+            throw new Exception("Cart not found");
         }
+
+        $cart_id = $cart['id'];
+
+        // get cart items with product price
+        $stmt = $this->pdo->prepare("
+            SELECT 
+                ci.product_id,
+                ci.quantity,
+                p.price AS unit_price
+            FROM cart_items ci
+            JOIN products p ON p.id = ci.product_id
+            WHERE ci.cart_id = ?
+        ");
+        $stmt->execute([$cart_id]);
+
+        $items = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+        if(!$items){
+            throw new Exception("Cart is empty");
+        }
+
+        // calculate total price
+        $total = 0;
+        foreach($items as $item){
+            $total += $item['quantity'] * $item['unit_price'];
+        }
+
+        // create order
+        $stmt = $this->pdo->prepare("
+            INSERT INTO orders (user_id, room_id, total_price, notes)
+            VALUES (?, ?, ?, ?)
+        ");
+
+        $res = $stmt->execute([
+            $this->user_id,
+            $room_id,
+            $total,
+            $notes
+        ]);
+
+        if (!$res) {
+            $err = $stmt->errorInfo();
+            throw new Exception('Insert order failed: ' . ($err[2] ?? 'unknown'));
+        }
+
+        $order_id = $this->pdo->lastInsertId();
+
+        // insert order items
+        $stmt = $this->pdo->prepare("
+            INSERT INTO order_items (order_id, product_id, quantity, unit_price)
+            VALUES (?, ?, ?, ?)
+        ");
+
+        foreach($items as $item){
+            $res = $stmt->execute([
+                $order_id,
+                $item['product_id'],
+                $item['quantity'],
+                $item['unit_price']
+            ]);
+
+            if (!$res) {
+                $err = $stmt->errorInfo();
+                throw new Exception('Insert order_item failed: ' . ($err[2] ?? 'unknown'));
+            }
+        }
+
+        /**
+         * IMPORTANT TEAM NOTE (Dev5 -> Dev4)
+         * Cart is cleared after checkout
+         */
+        $stmt = $this->pdo->prepare("DELETE FROM cart_items WHERE cart_id = ?");
+        $stmt->execute([$cart_id]);
+
+        $this->pdo->commit();
+
+        return $order_id;
+
+    } catch(Exception $e){
+
+        $this->pdo->rollBack();
+        echo "CreateOrder error: " . $e->getMessage();
+        return false;
     }
+    }
+
 
     // GET USER ORDERS
 

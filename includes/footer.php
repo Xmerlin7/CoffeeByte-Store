@@ -2,7 +2,7 @@
     <div class="container">
         <div class="row">
             <div class="col-md-4">
-                <h5>Cafe Aroma</h5>
+                <h5>☕ CoffeeByte</h5>
                 <p>Fresh coffee brewed with passion.</p>
             </div>
             <div class="col-md-4">

@@ -1,6 +1,6 @@
-<?php 
+<!-- <?php 
 $base = "/myprojects/CoffeeByte-Store"; 
-?>
+?> -->
 <!DOCTYPE html>
 <html>
     <head>
@@ -11,11 +11,13 @@ $base = "/myprojects/CoffeeByte-Store";
             integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw=="
             crossorigin="anonymous"
             referrerpolicy="no-referrer" />
-        <!-- <link rel="stylesheet" href="../assets/css/app.css">
-        <link rel="stylesheet" href="../assets/css/styles.css"> -->
+        <link rel="stylesheet" href="/assets/css/app.css">
+        <link rel="stylesheet" href="/assets/css/styles.css">
+        <!--
         <link rel="stylesheet" href="<?= $base ?>/assets/css/app.css">
-<link rel="stylesheet" href="<?= $base ?>/assets/css/styles.css">
-        <title><?= $title ?? "Cafe Aroma" ?></title>
+        <link rel="stylesheet" href="<?= $base ?>/assets/css/styles.css">
+        -->
+        <title><?= $title ?? "CoffeeByte" ?></title>
     </head>
     <body>
         <?php include __DIR__ . "/../includes/header.php"; ?>

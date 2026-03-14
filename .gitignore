@@ -8,3 +8,5 @@ assets/uploads/*
 .DS_Store
 Thumbs.db
 Database.php
+
+.sass-cache
