@@ -1,0 +1,14 @@
+@import "core/variables";
+
+/* bootstrap */
+@import "../bootstrap/scss/bootstrap";
+
+/* components */
+@import "components/navbar";
+@import "components/footer";
+@import "components/product-card";
+@import "components/forms";
+@import "components/cart";
+
+/* pages */
+@import "pages/menu";
