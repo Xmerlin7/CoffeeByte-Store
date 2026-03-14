@@ -1,6 +1,6 @@
 <nav class="navbar navbar-expand-lg navbar-cafe">
   <div class="container">
-    <a class="navbar-brand" href="/public/home">☕ Cafe Aroma</a>
+    <a class="navbar-brand" href="/public/home">☕CoffeeByte</a>
     
     <button class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#nav">
       <i class="fa-solid fa-bars"></i>

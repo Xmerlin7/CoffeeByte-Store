@@ -1,3 +1,6 @@
+<?php 
+$base = "/myprojects/CoffeeByte-Store"; 
+?>
 <!DOCTYPE html>
 <html>
     <head>
@@ -8,8 +11,10 @@
             integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw=="
             crossorigin="anonymous"
             referrerpolicy="no-referrer" />
-        <link rel="stylesheet" href="../assets/css/app.css">
-        <link rel="stylesheet" href="../assets/css/styles.css">
+        <!-- <link rel="stylesheet" href="../assets/css/app.css">
+        <link rel="stylesheet" href="../assets/css/styles.css"> -->
+        <link rel="stylesheet" href="<?= $base ?>/assets/css/app.css">
+<link rel="stylesheet" href="<?= $base ?>/assets/css/styles.css">
         <title><?= $title ?? "Cafe Aroma" ?></title>
     </head>
     <body>
