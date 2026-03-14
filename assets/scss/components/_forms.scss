@@ -1,6 +1,13 @@
+.container:has(.auth-card) {
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 .auth-card {
-  max-width: 420px;
-  margin: auto;
+  width: 90%;
+  max-width: 450px;
   background: white;
   padding: 30px;
   border-radius: $radius;
