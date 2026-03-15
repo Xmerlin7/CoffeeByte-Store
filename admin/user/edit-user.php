@@ -35,29 +35,70 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     header("Location: manage-users.php");
 }
 ?>
+<?php
+$title = "CoffeeByte - Edit User";
+ob_start();
+?>
+<form class="admin-form" method="POST" enctype="multipart/form-data">
 
-<form method="POST" enctype="multipart/form-data">
-    <input type="hidden" name="id" value="<?= htmlspecialchars($user['id']) ?>">
+<input type="hidden" name="id" value="<?= htmlspecialchars($user['id']) ?>">
 
-    <input type="text"  name="name"  value="<?= htmlspecialchars($user['name']) ?>"><br>
-    <input type="email" name="email" value="<?= htmlspecialchars($user['email']) ?>"><br>
+<div class="form-group">
+<label>Name</label>
+<input
+type="text"
+name="name"
+class="form-input"
+value="<?= htmlspecialchars($user['name']) ?>"
+>
+</div>
 
-    <?php if (!empty($user['image'])): ?>
-        <img
-            src="../../assets/uploads/users/<?= rawurlencode($user['image']) ?>"
-            alt="<?= htmlspecialchars($user['name']) ?>"
-            width="60"
-            height="60"
-            style="object-fit: cover; border-radius: 50%;"
-        ><br>
-    <?php endif; ?>
+<div class="form-group">
+<label>Email</label>
+<input
+type="email"
+name="email"
+class="form-input"
+value="<?= htmlspecialchars($user['email']) ?>"
+>
+</div>
 
-    <input type="file" name="image" accept="image/*"><br>
+<?php if (!empty($user['image'])): ?>
+<div class="form-group">
+<label>Current Image</label>
+<br>
+<img
+src="../../assets/uploads/users/<?= rawurlencode($user['image']) ?>"
+alt="<?= htmlspecialchars($user['name']) ?>"
+class="user-avatar-lg"
+>
+</div>
+<?php endif; ?>
 
-    <select name="role">
-        <option value="user"  <?= $user['role'] == 'user'  ? 'selected' : '' ?>>User</option>
-        <option value="admin" <?= $user['role'] == 'admin' ? 'selected' : '' ?>>Admin</option>
-    </select><br>
+<div class="form-group">
+<label>Upload New Image</label>
+<input type="file" name="image" accept="image/*" class="form-input">
+</div>
 
-    <button>Save</button>
+<div class="form-group">
+<label>Role</label>
+<select name="role" class="form-input">
+
+<option value="user" <?= $user['role'] == 'user' ? 'selected' : '' ?>>
+User
+</option>
+
+<option value="admin" <?= $user['role'] == 'admin' ? 'selected' : '' ?>>
+Admin
+</option>
+
+</select>
+</div>
+
+<button class="btn-primary">Save</button>
+
 </form>
+<?php
+$content = ob_get_clean();
+include "../../layouts/dash.php";
+?>

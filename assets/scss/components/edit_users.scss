@@ -1,0 +1,97 @@
+
+.admin-form {
+
+  background: white;
+
+  padding: 28px;
+
+  border-radius: $radius;
+
+  box-shadow: $shadow-soft;
+
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+
+  max-width: 420px;
+
+}
+
+.form-group {
+
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+
+  label {
+    font-size: 14px;
+    font-weight: 600;
+    color: $cafe-dark;
+  }
+
+}
+
+.form-input {
+
+  padding: 12px 14px;
+
+  border-radius: $radius;
+
+  border: 1px solid rgba(0,0,0,.12);
+
+  transition: $transition;
+
+  font-size: 14px;
+
+  &:focus {
+
+    outline: none;
+
+    border-color: $cafe-primary;
+
+    box-shadow: 0 0 0 3px rgba(111,78,55,.15);
+
+  }
+
+}
+
+.user-avatar-lg {
+
+  width: 60px;
+  height: 60px;
+
+  border-radius: 50%;
+
+  object-fit: cover;
+
+  box-shadow: $shadow-soft;
+
+}
+
+.btn-primary {
+
+  background: $cafe-primary;
+
+  color: white;
+
+  border: none;
+
+  padding: 12px;
+
+  border-radius: $radius;
+
+  cursor: pointer;
+
+  font-weight: 600;
+
+  transition: $transition;
+
+  &:hover {
+
+    background: $cafe-accent;
+
+    box-shadow: $shadow-hover;
+
+  }
+
+}

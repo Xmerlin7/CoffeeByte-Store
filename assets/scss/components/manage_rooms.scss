@@ -1,0 +1,59 @@
+
+.rooms-page {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+/* Add room button */
+
+.add-room-btn {
+  align-self: flex-start;
+}
+
+/* Room number */
+
+.room-number {
+  font-weight: 600;
+  color: $cafe-primary;
+}
+
+.room-id {
+  font-size: 13px;
+  color: rgba($cafe-dark,.6);
+}
+
+/* Actions */
+
+.actions {
+  display: flex;
+  gap: 8px;
+}
+
+/* Buttons reuse */
+
+.btn-edit {
+  background: $cafe-primary;
+  color: white;
+  padding: 6px 12px;
+  border-radius: $radius;
+  text-decoration: none;
+  transition: $transition;
+
+  &:hover {
+    box-shadow: $shadow-hover;
+  }
+}
+
+.btn-delete {
+  background: #e74c3c;
+  color: white;
+  padding: 6px 12px;
+  border-radius: $radius;
+  text-decoration: none;
+  transition: $transition;
+
+  &:hover {
+    box-shadow: $shadow-hover;
+  }
+}
