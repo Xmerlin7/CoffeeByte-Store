@@ -1,0 +1,20 @@
+@use "../core/variables" as *;
+
+.admin-body {
+  background: $cafe-cream;
+}
+
+.admin-layout {
+  display: flex;
+  min-height: 100vh;
+}
+
+.admin-main {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.admin-content {
+  padding: 30px;
+}

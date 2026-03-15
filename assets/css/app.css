@@ -10482,7 +10482,10 @@ textarea.form-control-lg {
   margin-bottom: 10px; }
 
 .btn-checkout {
+  display: block;
   margin-top: 15px;
+  text-align: center;
+  text-decoration: none;
   width: 100%;
   background: #6f4e37;
   color: white;
@@ -10495,6 +10498,70 @@ textarea.form-control-lg {
   text-align: center;
   padding: 40px;
   font-size: 18px; }
+
+@use "../core/variables" as *;
+.admin-body {
+  background: #f7efe5; }
+
+.admin-layout {
+  display: flex;
+  min-height: 100vh; }
+
+.admin-main {
+  flex: 1;
+  display: flex;
+  flex-direction: column; }
+
+.admin-content {
+  padding: 30px; }
+
+@use "../core/variables" as *;
+.admin-sidebar {
+  width: 260px;
+  background: #2f2a26;
+  color: white;
+  padding: 25px 20px; }
+
+.sidebar-brand {
+  font-size: 22px;
+  font-weight: 700;
+  color: #c8a27c;
+  margin-bottom: 25px;
+  display: flex;
+  align-items: center;
+  gap: 10px; }
+
+.sidebar-menu {
+  list-style: none;
+  padding: 0;
+  margin: 0; }
+
+.sidebar-menu li {
+  margin-bottom: 8px; }
+
+.sidebar-menu a {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 14px;
+  border-radius: 16px;
+  text-decoration: none;
+  color: #ddd;
+  transition: all 0.25s ease; }
+
+.sidebar-menu a:hover {
+  background: #6f4e37;
+  color: white; }
+
+.menu-title {
+  font-size: 11px;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.5);
+  margin: 18px 0 6px; }
+
+@use "../core/variables" as *;
+.admin-content {
+  background: #f7efe5; }
 
 /* pages */
 .menu-header {

@@ -25,7 +25,7 @@
 }
 
 .price {
-  color: #6f4e37;
+  color: $cafe-primary;
 }
 
 .item-total {
@@ -43,7 +43,7 @@
     justify-content: center;
     align-items: center;
     border: none;
-    background: #6f4e37;
+    background: $cafe-primary;
     color: white;
     width: 32px;
     height: 32px;
@@ -81,9 +81,12 @@
 }
 
 .btn-checkout {
+  display: block;
   margin-top: 15px;
+  text-align: center;
+  text-decoration: none;
   width: 100%;
-  background: #6f4e37;
+  background: $cafe-primary;
   color: white;
   border: none;
   padding: 12px;

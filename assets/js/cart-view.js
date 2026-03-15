@@ -132,9 +132,9 @@ function loadCart() {
                         <span>Total Price</span>
                         <strong>$${total.toFixed(2)}</strong>
                     </div>
-                    <button class="btn-checkout">
+                    <a class="btn-checkout" href="/public/order.php">
                         Checkout
-                    </button>
+                    </a>
                 </div>
             </div>
             `
