@@ -1,0 +1,147 @@
+.form-card {
+  background: white;
+  padding: 30px;
+  border-radius: $radius;
+  box-shadow: $shadow-soft;
+}
+
+/* Form layout */
+
+.admin-form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.form-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 18px;
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+
+  &.full {
+    grid-column: span 2;
+  }
+
+  label {
+    font-size: 14px;
+    font-weight: 600;
+    color: $cafe-dark;
+  }
+
+  input,
+  select {
+    padding: 10px 12px;
+    border-radius: $radius;
+    border: 1px solid rgba(0,0,0,.1);
+    transition: $transition;
+
+    &:focus {
+      outline: none;
+      border-color: $cafe-primary;
+      box-shadow: 0 0 0 3px rgba(111,78,55,.15);
+    }
+  }
+}
+
+/* Upload zone */
+
+.upload-zone {
+  border: 2px dashed $cafe-secondary;
+  border-radius: $radius;
+  padding: 25px;
+  text-align: center;
+  cursor: pointer;
+  transition: $transition;
+  position: relative;
+
+  input {
+    position: absolute;
+    inset: 0;
+    opacity: 0;
+    cursor: pointer;
+  }
+
+  &:hover {
+    background: $cafe-cream;
+  }
+}
+
+.upload-icon {
+  font-size: 30px;
+  margin-bottom: 8px;
+}
+
+.upload-label {
+  font-size: 14px;
+  color: rgba($cafe-dark,.7);
+}
+
+/* Preview */
+
+.preview-wrap {
+  margin-top: 10px;
+}
+
+#previewImg {
+  max-width: 140px;
+  border-radius: $radius;
+  box-shadow: $shadow-soft;
+}
+
+/* Actions */
+
+.form-actions {
+  display: flex;
+  gap: 10px;
+  margin-top: 10px;
+}
+
+.btn-save {
+  background: $cafe-primary;
+  color: white;
+  border: none;
+  padding: 10px 16px;
+  border-radius: $radius;
+  cursor: pointer;
+  transition: $transition;
+
+  &:hover {
+    box-shadow: $shadow-hover;
+  }
+}
+
+.btn-cancel {
+  background: $cafe-cream;
+  color: $cafe-dark;
+  padding: 10px 16px;
+  border-radius: $radius;
+  text-decoration: none;
+}
+
+.highlight {
+  color: $cafe-primary;
+}
+
+/* Current image preview */
+
+.current-img-wrap {
+  margin-bottom: 14px;
+}
+
+.current-img-label {
+  font-size: 13px;
+  color: rgba($cafe-dark,.7);
+  margin-bottom: 6px;
+}
+
+.current-product-img {
+  width: 120px;
+  border-radius: $radius;
+  box-shadow: $shadow-soft;
+}
