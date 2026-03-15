@@ -1,17 +1,12 @@
-@use "../core/variables" as *;
-
 .admin-sidebar {
-
   width: 260px;
   background: $cafe-dark;
   color: white;
 
   padding: 25px 20px;
-
 }
 
 .sidebar-brand {
-
   font-size: 22px;
   font-weight: 700;
 
@@ -22,25 +17,19 @@
   display: flex;
   align-items: center;
   gap: 10px;
-
 }
 
 .sidebar-menu {
-
   list-style: none;
   padding: 0;
   margin: 0;
-
 }
 
 .sidebar-menu li {
-
   margin-bottom: 8px;
-
 }
 
 .sidebar-menu a {
-
   display: flex;
   align-items: center;
   gap: 10px;
@@ -54,23 +43,18 @@
   color: #ddd;
 
   transition: $transition;
-
 }
 
 .sidebar-menu a:hover {
-
   background: $cafe-primary;
   color: white;
-
 }
 
 .menu-title {
-
   font-size: 11px;
   text-transform: uppercase;
 
-  color: rgba(255,255,255,.5);
+  color: rgba(255, 255, 255, 0.5);
 
   margin: 18px 0 6px;
-
 }

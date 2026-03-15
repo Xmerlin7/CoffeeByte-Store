@@ -46,16 +46,17 @@
         <hr>
         <li class="menu-title">Users</li>
         <li>
-            <a href="/admin/room/manage-users.php">
+            <a href="/admin/user/manage-users.php">
                 <i class="fa-solid fa-users"></i>
                 Manage Users
             </a>
         </li>
         <li>
-            <a href="/admin/room/add-user.php">
+            <a href="/admin/user/add-user.php">
                 <i class="fa-solid fa-user-plus"></i>
                 Create User
             </a>
         </li>
+        
     </ul>
 </div>
