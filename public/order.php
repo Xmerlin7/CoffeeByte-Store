@@ -1,13 +1,16 @@
 <?php
 require_once '../classes/Database.php';
 require_once '../classes/Order.php';
+require_once '../config/functions.php';
+
+checkUser();
 
 // 1. INITIALIZE
 $db = new Database();
 $pdo = $db->getConnection();
 
-// Hardcoded user for this example
-$user_id = 2;
+// $user_id = 2;
+$user_id = $_SESSION['user_id'];
 $order = new Order($pdo, $user_id);
 
 $message = "";

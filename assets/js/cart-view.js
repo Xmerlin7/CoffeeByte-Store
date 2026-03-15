@@ -53,20 +53,32 @@
 // }
 
 function loadCart() {
-    fetch("../../features/cart/get.php")
-        .then(res => res.json())
-        .then(items => {
-            if (items.length == 0) {
-                document.getElementById("cart-info").innerHTML =
-                    `<div class="cart-empty">
+  fetch("../../features/cart/get.php")
+    .then((res) => {
+      if (res.status === 401) {
+        window.location.href = "/public/login.php?message=Please login first";
+        throw new Error("Unauthorized");
+      }
+
+      if (!res.ok) {
+        throw new Error("Failed to load cart");
+      }
+
+      return res;
+    })
+    .then((res) => res.json())
+    .then((items) => {
+      if (items.length == 0) {
+        document.getElementById("cart-info").innerHTML =
+          `<div class="cart-empty">
                         <p>No items found ☕</p>
                     </div>`;
-                return;
-            }
+        return;
+      }
 
-            let total = 0
-            let count = 0
-            let html = `
+      let total = 0;
+      let count = 0;
+      let html = `
             <div class="cart-wrapper">
                 <div class="table-responsive">
                 <table class="table cafe-cart-table">
@@ -80,13 +92,13 @@ function loadCart() {
                         </tr>
                     </thead>
                     <tbody>
-            `
+            `;
 
-            items.forEach(item => {
-                total += parseFloat(item.total)
-                count += parseInt(item.quantity)
+      items.forEach((item) => {
+        total += parseFloat(item.total);
+        count += parseInt(item.quantity);
 
-                html += `
+        html += `
                 <tr>
                     <td class="product-name">
                         ${item.name}
@@ -117,9 +129,9 @@ function loadCart() {
                         </button>
                     </td>
                 </tr>
-                `
-            })
-            html += `
+                `;
+      });
+      html += `
                     </tbody>
                 </table>
                 </div>
@@ -137,9 +149,16 @@ function loadCart() {
                     </a>
                 </div>
             </div>
-            `
-            document.getElementById("cart-info").innerHTML = html;
-        })
+            `;
+      document.getElementById("cart-info").innerHTML = html;
+    })
+    .catch((error) => {
+      console.error(error);
+      const cartInfo = document.getElementById("cart-info");
+      if (cartInfo) {
+        cartInfo.innerHTML = `<div class="cart-empty"><p>Could not load cart.</p></div>`;
+      }
+    });
 }
 
-loadCart()
+loadCart();

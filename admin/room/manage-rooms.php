@@ -1,7 +1,7 @@
 <?php
 require_once "../../classes/Room.php";
-// require_once "../../config/functions.php";
-// checkAdmin();
+require_once "../../config/functions.php";
+checkAdmin();
 $roomObj = new Room();
 $rooms = $roomObj->getAllRooms();
 ?>

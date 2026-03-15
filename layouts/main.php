@@ -1,6 +1,8 @@
-<!-- <?php 
-$base = "/myprojects/CoffeeByte-Store"; 
-?> -->
+<?php
+require_once "../config/functions.php";
+$base = "/myprojects/CoffeeByte-Store";
+checkUser();
+?>
 <!DOCTYPE html>
 <html>
     <head>

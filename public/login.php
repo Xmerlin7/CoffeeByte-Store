@@ -77,6 +77,11 @@ ob_start();
 
         </form>
 
+        <p class="text-center small mt-4 mb-0">
+            Don't have an account?
+            <a href="register.php" class="auth-link">Register</a>
+        </p>
+
     </div>
 
 </div>

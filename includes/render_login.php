@@ -34,7 +34,20 @@ try {
         $_SESSION['user_id']   = $user['id'];
         $_SESSION['user_name'] = $user['name'];
         $_SESSION['user_role'] = $user['role'];
-        header("Location: ../public/home.php");
+
+        if ($user['role'] === 'admin') {
+            header("Location: ../admin/dashboard.php");
+            exit;
+        }
+
+        if ($user['role'] === 'user') {
+            header("Location: ../public/home.php");
+            exit;
+        }
+
+        session_unset();
+        session_destroy();
+        header("Location: ../public/login.php?message=Unauthorized role");
     } else {
         header("Location: ../public/login.php?message=Invalid email or password");
     }
