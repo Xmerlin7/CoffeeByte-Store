@@ -10482,7 +10482,10 @@ textarea.form-control-lg {
   margin-bottom: 10px; }
 
 .btn-checkout {
+  display: block;
   margin-top: 15px;
+  text-align: center;
+  text-decoration: none;
   width: 100%;
   background: #6f4e37;
   color: white;
