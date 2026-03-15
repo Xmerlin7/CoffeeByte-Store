@@ -19,7 +19,7 @@ $products = $p->getAll();
         <?php foreach($products as $product): ?>
         <div class="col-md-4 mb-4">
             <div class="cafe-card">
-                <img src="../assets/imgs/backup-img.png" class="cafe-img" />
+                <img src="../<?= htmlspecialchars($product['image']) ?>" class="cafe-img" />
                 <div class="cafe-body">
                     <h4 class="coffee-title"><?= $product['name'] ?></h4>
                     <span class="coffee-price">$<?= $product['price'] ?></span>
