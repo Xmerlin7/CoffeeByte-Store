@@ -12523,4 +12523,78 @@ tbody tr:hover {
   margin-bottom: 20px;
 }
 
+/* Page background */
+body {
+  background: linear-gradient(135deg, #2f2a26, #6f4e37);
+  font-family: "Inter", sans-serif;
+}
+
+/* Login Card */
+.card {
+  background: #fff;
+  border-radius: 20px;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+  border: none;
+}
+
+/* Logo icon */
+.bg-primary {
+  background: #6f4e37 !important;
+}
+
+/* Heading */
+.card h4, .card .h4 {
+  color: #2f2a26;
+}
+
+.text-body-secondary {
+  color: #777 !important;
+}
+
+/* Inputs */
+.form-control {
+  border-radius: 10px;
+  border: 1px solid #ddd;
+  background: #fafafa !important;
+  padding: 10px;
+}
+
+.form-control:focus {
+  border-color: #6f4e37;
+  box-shadow: 0 0 0 3px rgba(111, 78, 55, 0.2);
+}
+
+/* Input icons */
+.input-group-text {
+  border-radius: 10px 0 0 10px;
+  background: #f3f3f3 !important;
+  border: 1px solid #ddd;
+}
+
+/* Button */
+.btn-primary {
+  background: #6f4e37;
+  border: none;
+  transition: all 0.25s ease;
+}
+
+.btn-primary:hover {
+  background: #5b3f2d;
+  transform: translateY(-1px);
+}
+
+/* Reset password link */
+a.text-primary {
+  color: #6f4e37 !important;
+}
+
+a.text-primary:hover {
+  text-decoration: underline;
+}
+
+/* Alert */
+.alert {
+  border-radius: 10px;
+}
+
 /*# sourceMappingURL=app.css.map */

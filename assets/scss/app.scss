@@ -13,8 +13,9 @@
 @import "components/sidebar";
 @import "components/admin-content";
 @import "components/admin_forms.scss";
-@import 'components/users-table';
+@import "components/users-table";
 /* pages */
 @import "pages/menu";
 @import "pages/orders";
 @import "pages/admin-orders";
+@import "pages/login";

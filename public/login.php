@@ -1,67 +1,164 @@
-<!DOCTYPE html>
-<html lang="en" data-bs-theme="dark">
+<?php
+$title = "CoffeeByte - Welcome back";
+ob_start();
+?>
 
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Login</title>
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet" />
+
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+
+<style>
+
+/* Background */
+
+body{
+    min-height:100vh;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    background:linear-gradient(135deg,#2f2a26,#6f4e37);
+    font-family:system-ui;
+}
+
+/* Card */
+
+.login-card{
+    width:100%;
+    max-width:420px;
+    border-radius:20px;
+    padding:40px;
+    background:white;
+    box-shadow:0 25px 45px rgba(0,0,0,.25);
+}
+
+/* Logo */
+
+.logo-box{
+    width:60px;
+    height:60px;
+    background:#6f4e37;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    border-radius:14px;
+    margin:auto;
+    margin-bottom:15px;
+    color:white;
+    font-size:22px;
+}
+
+/* Title */
+
+.login-title{
+    text-align:center;
+    font-weight:700;
+}
+
+.login-sub{
+    text-align:center;
+    color:#777;
+    font-size:.9rem;
+    margin-bottom:25px;
+}
+
+/* Inputs */
+
+.form-control{
+    border-radius:10px;
+    padding:10px;
+}
+
+.form-control:focus{
+    border-color:#6f4e37;
+    box-shadow:0 0 0 3px rgba(111,78,55,.15);
+}
+
+/* Button */
+
+.btn-coffee{
+    background:#6f4e37;
+    color:white;
+    border:none;
+    border-radius:10px;
+    padding:10px;
+    font-weight:600;
+}
+
+.btn-coffee:hover{
+    background:#5b3f2d;
+}
+
+/* Reset link */
+
+.reset-link{
+    font-size:.8rem;
+    text-decoration:none;
+    color:#6f4e37;
+}
+
+.reset-link:hover{
+    text-decoration:underline;
+}
+
+</style>
+
 </head>
 
-<body class="bg-body-tertiary min-vh-100 d-flex align-items-center justify-content-center">
-  <div class="card border-0 shadow-lg rounded-4" style="width:100%;max-width:420px">
-    <div class="card-body p-5">
+<body>
 
-      <div class="text-center mb-4">
-        <span class="bg-primary bg-gradient p-3 rounded-3 d-inline-flex mb-3">
-          <i class="bi bi-lightning-charge-fill text-white fs-4"></i>
-        </span>
-        <h4 class="fw-bold mb-0">Welcome back</h4>
-        <p class="text-body-secondary small mt-1">Sign in to your account</p>
-      </div>
+<div class="login-card">
 
-      <?php if (isset($_GET['message'])): ?>
-        <div class="alert alert-danger text-center mb-3" role="alert">
-          <?= htmlspecialchars($_GET['message']) ?>
-        </div>
-      <?php endif; ?>
-      <!-- This form submits to render_login.php to handle the login logic  make it render home page is the user existed in oud db-->
-      <form action="../includes/render_login.php" method="POST">
-        <div class="mb-3">
-          <label class="form-label small fw-semibold">Email address</label>
-          <div class="input-group">
-            <span class="input-group-text bg-body-secondary border-end-0">
-              <i class="bi bi-envelope text-body-secondary"></i>
-            </span>
-            <input type="email" name="email" class="form-control border-start-0 bg-body-secondary ps-0"
-              placeholder="you@example.com" autocomplete="email" required />
-          </div>
-        </div>
+<div class="logo-box">
+☕
+</div>
 
-        <div class="mb-3">
-          <div class="d-flex justify-content-between">
-            <label class="form-label small fw-semibold">Password</label>
-            <a href="resetPassword.php" class="small text-primary text-decoration-none">reset password?</a>
-          </div>
-          <div class="input-group">
-            <span class="input-group-text bg-body-secondary border-end-0">
-              <i class="bi bi-lock text-body-secondary"></i>
-            </span>
-            <input type="password" name="password" class="form-control border-start-0 bg-body-secondary ps-0"
-              placeholder="••••••••" autocomplete="current-password" required />
-          </div>
-        </div>
+<h4 class="login-title">Welcome back</h4>
+<p class="login-sub">Sign in to your account</p>
 
-        <div class="d-grid">
-          <button type="submit" name="login-btn" class="btn btn-primary rounded-3 fw-semibold py-2">
-            Sign In <i class="bi bi-arrow-right ms-1"></i>
-          </button>
-        </div>
-      </form>
+<?php if (isset($_GET['message'])): ?>
+<div class="alert alert-danger text-center">
+<?= htmlspecialchars($_GET['message']) ?>
+</div>
+<?php endif; ?>
 
-    </div>
-  </div>
+<form action="../includes/render_login.php" method="POST">
+
+<div class="mb-3">
+<label class="form-label small fw-semibold">Email address</label>
+<input type="email"
+name="email"
+class="form-control"
+placeholder="you@example.com"
+required>
+</div>
+
+<div class="mb-3">
+
+<div class="d-flex justify-content-between">
+<label class="form-label small fw-semibold">Password</label>
+<a href="resetPassword.php" class="reset-link">reset password?</a>
+</div>
+
+<input type="password"
+name="password"
+class="form-control"
+placeholder="••••••••"
+required>
+
+</div>
+
+<div class="d-grid">
+<button type="submit" name="login-btn" class="btn btn-coffee">
+Sign In
+</button>
+</div>
+
+</form>
+
+</div>
+
 </body>
-
 </html>
+<?php
+$title = "CoffeeByte - login";
+ob_start();
+?>
