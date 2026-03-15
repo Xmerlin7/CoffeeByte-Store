@@ -12292,6 +12292,244 @@ textarea.form-control-lg {
   font-size: 13px;
 }
 
+/* Page header */
+.page-title {
+  font-size: 28px;
+  font-weight: 700;
+  color: #2f2a26;
+}
+
+.page-sub {
+  margin-bottom: 20px;
+  color: rgba(47, 42, 38, 0.7);
+}
+
+/* Notifications */
+.notif {
+  padding: 12px 16px;
+  border-radius: 16px;
+  margin-bottom: 20px;
+  font-size: 14px;
+}
+.notif.success {
+  background: rgba(200, 162, 124, 0.15);
+  color: #2f2a26;
+}
+.notif.error {
+  background: rgba(231, 76, 60, 0.12);
+  color: #c0392b;
+}
+
+/* Filter buttons */
+.filter-bar {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 20px;
+  flex-wrap: wrap;
+}
+
+.filter-btn {
+  border: none;
+  padding: 8px 14px;
+  border-radius: 16px;
+  background: white;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+  cursor: pointer;
+  transition: all 0.25s ease;
+}
+.filter-btn.active, .filter-btn:hover {
+  background: #6f4e37;
+  color: white;
+}
+
+/* Table */
+.table-wrapper {
+  background: white;
+  border-radius: 16px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+  overflow: hidden;
+}
+
+.admin-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+.admin-table th {
+  background: #2f2a26;
+  color: white;
+  text-align: left;
+  padding: 14px;
+}
+.admin-table td {
+  padding: 14px;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+}
+.admin-table tr:hover {
+  background: #f7efe5;
+}
+
+/* Product cell */
+.product-info {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.prod-img {
+  width: 45px;
+  height: 45px;
+  object-fit: cover;
+  border-radius: 16px;
+}
+
+.no-img {
+  width: 45px;
+  height: 45px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #f7efe5;
+  border-radius: 16px;
+}
+
+.prod-name {
+  font-weight: 600;
+  color: #2f2a26;
+}
+
+.prod-id {
+  font-size: 12px;
+  color: rgba(47, 42, 38, 0.6);
+}
+
+.price {
+  font-weight: 600;
+  color: #6f4e37;
+}
+
+/* Badges */
+.badge {
+  padding: 4px 10px;
+  border-radius: 16px;
+  font-size: 12px;
+  font-weight: 600;
+}
+.badge.available {
+  background: rgba(46, 204, 113, 0.15);
+  color: #27ae60;
+}
+.badge.unavailable {
+  background: rgba(231, 76, 60, 0.15);
+  color: #c0392b;
+}
+.badge.other {
+  background: #f7efe5;
+  color: #2f2a26;
+}
+
+/* Actions */
+.actions {
+  display: flex;
+  gap: 8px;
+}
+
+.btn-edit,
+.btn-delete {
+  border: none;
+  padding: 6px 12px;
+  border-radius: 16px;
+  cursor: pointer;
+  font-size: 13px;
+  transition: all 0.25s ease;
+}
+
+.btn-edit {
+  background: #6f4e37;
+  color: white;
+}
+.btn-edit:hover {
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.12);
+}
+
+.btn-delete {
+  background: #e74c3c;
+  color: white;
+}
+.btn-delete:hover {
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.12);
+}
+
+/* Empty state */
+.empty {
+  text-align: center;
+  padding: 40px;
+}
+.empty h3, .empty .h3 {
+  margin-top: 10px;
+  color: #2f2a26;
+}
+.empty p {
+  color: rgba(47, 42, 38, 0.6);
+}
+
+.empty-icon {
+  font-size: 40px;
+}
+
+/* Modal */
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.4);
+  display: none;
+  align-items: center;
+  justify-content: center;
+}
+.modal-overlay.open {
+  display: flex;
+}
+
+.modal {
+  background: white;
+  padding: 24px;
+  border-radius: 16px;
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.12);
+  width: 340px;
+}
+
+.modal-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+  margin-top: 20px;
+}
+
+.modal-cancel {
+  background: #f7efe5;
+  border: none;
+  padding: 8px 12px;
+  border-radius: 16px;
+  cursor: pointer;
+}
+
+.modal-confirm {
+  background: #e74c3c;
+  color: white;
+  border: none;
+  padding: 8px 12px;
+  border-radius: 16px;
+  cursor: pointer;
+}
+
+.form-card {
+  background: white;
+  padding: 30px;
+  border-radius: 16px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+}
+
+/* Form layout */
+.admin-form {
 .admin-form {
   background: white;
   padding: 28px;
@@ -12356,6 +12594,127 @@ textarea.form-control-lg {
   gap: 20px;
 }
 
+.form-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 18px;
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+.field.full {
+  grid-column: span 2;
+}
+.field label {
+  font-size: 14px;
+  font-weight: 600;
+  color: #2f2a26;
+}
+.field input,
+.field select {
+  padding: 10px 12px;
+  border-radius: 16px;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  transition: all 0.25s ease;
+}
+.field input:focus,
+.field select:focus {
+  outline: none;
+  border-color: #6f4e37;
+  box-shadow: 0 0 0 3px rgba(111, 78, 55, 0.15);
+}
+
+/* Upload zone */
+.upload-zone {
+  border: 2px dashed #c8a27c;
+  border-radius: 16px;
+  padding: 25px;
+  text-align: center;
+  cursor: pointer;
+  transition: all 0.25s ease;
+  position: relative;
+}
+.upload-zone input {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  cursor: pointer;
+}
+.upload-zone:hover {
+  background: #f7efe5;
+}
+
+.upload-icon {
+  font-size: 30px;
+  margin-bottom: 8px;
+}
+
+.upload-label {
+  font-size: 14px;
+  color: rgba(47, 42, 38, 0.7);
+}
+
+/* Preview */
+.preview-wrap {
+  margin-top: 10px;
+}
+
+#previewImg {
+  max-width: 140px;
+  border-radius: 16px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+}
+
+/* Actions */
+.form-actions {
+  display: flex;
+  gap: 10px;
+  margin-top: 10px;
+}
+
+.btn-save {
+  background: #6f4e37;
+  color: white;
+  border: none;
+  padding: 10px 16px;
+  border-radius: 16px;
+  cursor: pointer;
+  transition: all 0.25s ease;
+}
+.btn-save:hover {
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.12);
+}
+
+.btn-cancel {
+  background: #f7efe5;
+  color: #2f2a26;
+  padding: 10px 16px;
+  border-radius: 16px;
+  text-decoration: none;
+}
+
+.highlight {
+  color: #6f4e37;
+}
+
+/* Current image preview */
+.current-img-wrap {
+  margin-bottom: 14px;
+}
+
+.current-img-label {
+  font-size: 13px;
+  color: rgba(47, 42, 38, 0.7);
+  margin-bottom: 6px;
+}
+
+.current-product-img {
+  width: 120px;
+  border-radius: 16px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
 /* Add room button */
 .add-room-btn {
   align-self: flex-start;
