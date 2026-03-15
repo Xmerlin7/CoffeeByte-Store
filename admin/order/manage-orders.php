@@ -33,7 +33,6 @@ $title = "CoffeeByte - Dashboard - All orders";
 ob_start();
 ?>
 
-<div class="container mt-3">
     <h2>Orders</h2>
     
     <?php if($message): ?>
@@ -78,7 +77,7 @@ ob_start();
             </tbody>
         </table>
     </div>
-</div>
+
 
 <?php
 $content = ob_get_clean();

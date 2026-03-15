@@ -1,20 +1,8 @@
 
 .admin-form {
-
-  background: white;
-
-  padding: 28px;
-
-  border-radius: $radius;
-
-  box-shadow: $shadow-soft;
-
   display: flex;
   flex-direction: column;
   gap: 16px;
-
-  max-width: 420px;
-
 }
 
 .form-group {

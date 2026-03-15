@@ -11,9 +11,12 @@ ob_start();
 ?>
 <div class="users-page ">
 
-<a href="add-user.php" class="btn-primary add-user-btn">
-+ Add User
-</a>
+<div class="w-100 d-flex justify-content-between align-items-center">
+    <h2 class="m-0">Users</h2>
+    <a href="add-user.php" class="btn-checkout m-0" style="width: fit-content;">
+        + Add User
+    </a>
+</div>
 
 <div class="table-wrapper card">
 

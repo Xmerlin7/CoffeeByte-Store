@@ -29,7 +29,7 @@ $title = "CoffeeByte - Products";
 ob_start();
 ?>
 
-    <h1 class="page-title">Products</h1>
+    <h2>Products</h1>
 
     <p class="page-sub">
         <strong><?= count($products) ?></strong> items in catalogue
@@ -69,7 +69,7 @@ ob_start();
     </div>
 
 
-    <div class="table-wrapper">
+    <div class="table-wrapper card">
 
         <?php if (empty($products)): ?>
 

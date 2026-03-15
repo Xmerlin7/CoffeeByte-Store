@@ -13,6 +13,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 $title = "CoffeeByte - Add User";
 ob_start();
 ?>
+
+<h2>Create Room</h2>
+
 <div class="form-card">
 
 <form method="POST" class="admin-form">

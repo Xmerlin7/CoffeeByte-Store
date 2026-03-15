@@ -73,11 +73,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
 $categoryObj = new Category();
 $categories  = $categoryObj->getAll();
-
-//layout_head('Edit Product', ['label' => '← Back', 'href' => 'manage-products.php']);
 ?>
 
-    <h1 class="page-title">Edit Product</h1>
+    <h2>Edit Product</h1>
 
     <p class="page-sub">
         Editing
@@ -266,7 +264,6 @@ $categories  = $categoryObj->getAll();
             </div>
 
         </form>
-
     </div>
     <script>
         const input   = document.getElementById('imageInput');

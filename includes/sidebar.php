@@ -1,4 +1,5 @@
 <div class="admin-sidebar">
+    <h2 class="pb-5">☕ CoffeeByte</h2>
     <ul class="sidebar-menu">
         <li class="menu-title">Main</li>
         <li>
