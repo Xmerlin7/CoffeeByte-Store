@@ -1,54 +1,95 @@
 <?php
+
 require_once __DIR__ . '/../../classes/Database.php';
 require_once __DIR__ . '/../../classes/Product.php';
 require_once __DIR__ . '/../../classes/Category.php';
-require_once __DIR__ . '/../../includes/layout.php';
 
-// ── Handle delete ──────────────────────────────────────────
+/* ── Handle delete ───────────────────────── */
+
 $message = '';
+
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['delete_id'])) {
-    $p       = new Product();
+    $p = new Product();
     $message = $p->delete((int) $_POST['delete_id']) ? 'success' : 'error';
 }
 
-$product     = new Product();
-$products    = $product->getAll();
-$categoryObj = new Category();
-$categories  = $categoryObj->getAll();
+/* ── Load data ───────────────────────── */
 
-// ── Render ────────────────────────────────────────────────
-layout_head('Products', ['label' => '＋ Add Product', 'href' => 'create-product.php']);
+$product = new Product();
+$products = $product->getAll();
+
+$categoryObj = new Category();
+$categories = $categoryObj->getAll();
+
+
+/* ── Render ───────────────────────── */
+
+$title = "CoffeeByte - Products";
+
+ob_start();
 ?>
 
     <h1 class="page-title">Products</h1>
-    <p class="page-sub"><strong><?= count($products) ?></strong> items in catalogue</p>
+
+    <p class="page-sub">
+        <strong><?= count($products) ?></strong> items in catalogue
+    </p>
+
 
 <?php if ($message === 'success'): ?>
-    <div class="notif success">✓ &nbsp;Product deleted successfully.</div>
+    <div class="notif success">
+        ✓ Product deleted successfully.
+    </div>
 <?php elseif ($message === 'error'): ?>
-    <div class="notif error">✕ &nbsp;Something went wrong. Please try again.</div>
+    <div class="notif error">
+        ✕ Something went wrong. Please try again.
+    </div>
 <?php endif; ?>
 
-    <!-- ── Category filter ── -->
+
+    <!-- Category Filter -->
+
     <div class="filter-bar" id="filterBar">
-        <button class="filter-btn active" data-cat="all">All</button>
+
+        <button class="filter-btn active" data-cat="all">
+            All
+        </button>
+
         <?php foreach ($categories as $cat): ?>
-            <button class="filter-btn" data-cat="<?= $cat['id'] ?>">
+
+            <button
+                    class="filter-btn"
+                    data-cat="<?= $cat['id'] ?>"
+            >
                 <?= htmlspecialchars($cat['name']) ?>
             </button>
+
         <?php endforeach; ?>
+
     </div>
 
-    <div class="table-wrap">
+
+    <div class="table-wrapper">
+
         <?php if (empty($products)): ?>
+
             <div class="empty">
+
                 <div class="empty-icon">📦</div>
+
                 <h3>No products yet</h3>
+
                 <p>Add your first product to get started.</p>
+
             </div>
+
         <?php else: ?>
-            <table>
+
+
+            <table class="admin-table">
+
                 <thead>
+
                 <tr>
                     <th>Product</th>
                     <th>Price</th>
@@ -56,98 +97,253 @@ layout_head('Products', ['label' => '＋ Add Product', 'href' => 'create-product
                     <th>Status</th>
                     <th>Actions</th>
                 </tr>
+
                 </thead>
+
                 <tbody>
+
                 <?php foreach ($products as $p): ?>
+
                     <tr data-cat="<?= $p['category_id'] ?>">
+
                         <td>
-                            <div style="display:flex;align-items:center;gap:14px;">
+
+                            <div class="product-info">
+
                                 <?php if (!empty($p['image'])): ?>
-                                    <img src="<?= htmlspecialchars($p['image']) ?>" alt="" class="prod-img">
+
+                                    <img
+                                            src="../../<?= htmlspecialchars($p['image']) ?>"
+                                            class="prod-img"
+                                            alt=""
+                                    >
+
                                 <?php else: ?>
+
                                     <div class="no-img">🛒</div>
+
                                 <?php endif; ?>
+
+
                                 <div>
-                                    <div class="prod-name"><?= htmlspecialchars($p['name']) ?></div>
-                                    <div class="prod-id">#<?= $p['id'] ?></div>
+
+                                    <div class="prod-name">
+                                        <?= htmlspecialchars($p['name']) ?>
+                                    </div>
+
+                                    <div class="prod-id">
+                                        #<?= $p['id'] ?>
+                                    </div>
+
                                 </div>
+
                             </div>
+
                         </td>
-                        <td><span class="price">$<?= number_format((float)$p['price'], 2) ?></span></td>
-                        <td style="color:var(--muted);font-size:.85rem;">
+
+
+                        <td>
+
+<span class="price">
+$<?= number_format((float)$p['price'], 2) ?>
+</span>
+
+                        </td>
+
+
+                        <td class="cat-name">
+
                             <?php
+
                             $catName = '—';
+
                             foreach ($categories as $cat) {
-                                if ($cat['id'] == $p['category_id']) { $catName = $cat['name']; break; }
+                                if ($cat['id'] == $p['category_id']) {
+                                    $catName = $cat['name'];
+                                    break;
+                                }
                             }
+
                             echo htmlspecialchars($catName);
+
                             ?>
+
                         </td>
+
+
                         <td>
+
                             <?php
-                            $cls = match(strtolower($p['status'] ?? '')) {
-                                'available'   => 'available',
+
+                            $cls = match (strtolower($p['status'] ?? '')) {
+                                'available' => 'available',
                                 'unavailable' => 'unavailable',
-                                default       => 'other'
+                                default => 'other'
                             };
+
                             ?>
-                            <span class="badge <?= $cls ?>"><?= htmlspecialchars($p['status']) ?></span>
+
+                            <span class="badge <?= $cls ?>">
+<?= htmlspecialchars($p['status']) ?>
+</span>
+
                         </td>
+
+
                         <td>
+
                             <div class="actions">
-                                <a href="edit-product.php?id=<?= $p['id'] ?>" class="btn-edit">✎ Edit</a>
+
+                                <a
+                                        href="edit-product.php?id=<?= $p['id'] ?>"
+                                        class="btn-edit"
+                                >
+                                    ✎ Edit
+                                </a>
+
                                 <button
-                                    class="btn-del"
-                                    onclick="openModal(<?= $p['id'] ?>, '<?= htmlspecialchars(addslashes($p['name'])) ?>')"
-                                >🗑 Delete</button>
+                                        class="btn-delete"
+                                        onclick="openModal(
+                                        <?= $p['id'] ?>,
+                                                '<?= htmlspecialchars(addslashes($p['name'])) ?>'
+                                                )"
+                                >
+                                    🗑 Delete
+                                </button>
+
                             </div>
+
                         </td>
+
                     </tr>
+
                 <?php endforeach; ?>
+
                 </tbody>
+
             </table>
+
         <?php endif; ?>
+
     </div>
 
-    <!-- Delete confirmation modal -->
+
+
+    <!-- Delete Modal -->
+
     <div class="modal-overlay" id="deleteModal">
+
         <div class="modal">
+
             <h3>Delete Product?</h3>
-            <p>You're about to permanently delete <span class="modal-product" id="modalProductName"></span>. This action cannot be undone.</p>
+
+            <p>
+                You're about to permanently delete
+                <span id="modalProductName"></span>.
+            </p>
+
             <div class="modal-actions">
-                <button class="modal-cancel" onclick="closeModal()">Cancel</button>
-                <form method="POST" style="display:inline;">
-                    <input type="hidden" name="delete_id" id="modalDeleteId">
-                    <button type="submit" class="modal-confirm">Yes, Delete</button>
+
+                <button
+                        class="modal-cancel"
+                        onclick="closeModal()"
+                >
+                    Cancel
+                </button>
+
+                <form method="POST">
+
+                    <input
+                            type="hidden"
+                            name="delete_id"
+                            id="modalDeleteId"
+                    >
+
+                    <button
+                            type="submit"
+                            class="modal-confirm"
+                    >
+                        Yes, Delete
+                    </button>
+
                 </form>
+
             </div>
+
         </div>
+
     </div>
+
+
 
     <script>
+
         function openModal(id, name) {
+
             document.getElementById('modalDeleteId').value = id;
             document.getElementById('modalProductName').textContent = '"' + name + '"';
-            document.getElementById('deleteModal').classList.add('open');
-        }
-        function closeModal() {
-            document.getElementById('deleteModal').classList.remove('open');
-        }
-        document.getElementById('deleteModal').addEventListener('click', function(e) {
-            if (e.target === this) closeModal();
-        });
 
-        // ── Category filter ───────────────────────────────────
-        document.getElementById('filterBar').addEventListener('click', e => {
-            const btn = e.target.closest('.filter-btn');
-            if (!btn) return;
-            document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
-            btn.classList.add('active');
-            const cat = btn.dataset.cat;
-            document.querySelectorAll('tbody tr').forEach(row => {
-                row.style.display = (cat === 'all' || row.dataset.cat === cat) ? '' : 'none';
+            document
+                .getElementById('deleteModal')
+                .classList
+                .add('open');
+
+        }
+
+        function closeModal() {
+
+            document
+                .getElementById('deleteModal')
+                .classList
+                .remove('open');
+
+        }
+
+        document
+            .getElementById('deleteModal')
+            .addEventListener('click', function(e) {
+
+                if (e.target === this) closeModal();
+
             });
-        });
+
+
+        /* Category Filter */
+
+        document
+            .getElementById('filterBar')
+            .addEventListener('click', e => {
+
+                const btn = e.target.closest('.filter-btn');
+
+                if (!btn) return;
+
+                document
+                    .querySelectorAll('.filter-btn')
+                    .forEach(b => b.classList.remove('active'));
+
+                btn.classList.add('active');
+
+                const cat = btn.dataset.cat;
+
+                document
+                    .querySelectorAll('tbody tr')
+                    .forEach(row => {
+
+                        row.style.display =
+                            (cat === 'all' || row.dataset.cat === cat)
+                                ? ''
+                                : 'none';
+
+                    });
+
+            });
+
     </script>
 
-<?php layout_foot(); ?>
+
+<?php
+
+$content = ob_get_clean();
+
+include "../../layouts/dash.php";
