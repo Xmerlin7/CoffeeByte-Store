@@ -1,0 +1,61 @@
+.cafe-card {
+  background: white;
+  border-radius: $radius;
+  overflow: hidden;
+  box-shadow: $shadow-soft;
+
+  .cafe-img {
+    height: 220px;
+    object-fit: cover;
+    width: 100%;
+  }
+
+  .cafe-body {
+    padding: 18px;
+  }
+
+  .coffee-title {
+    font-weight: 600;
+  }
+
+  .coffee-price {
+    color: $cafe-primary;
+    font-weight: 700;
+  }
+
+  .btn-coffee {
+    background: $cafe-primary;
+    color: white;
+    border: none;
+    border-radius: 10px;
+    padding: 8px 14px;
+
+    &:hover {
+      background: darken($cafe-primary,10%);
+    }
+  }
+}
+
+.cart-controls {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+
+    button {
+        border: none;
+        background: #6f4e37;
+        color: white;
+        padding: 6px 10px;
+        border-radius: 8px;
+    }
+
+    span {
+        font-weight: 600;
+        width: 20px;
+        text-align: center;
+    }
+
+    .remove-btn {
+        background: #d9534f;
+    }
+}

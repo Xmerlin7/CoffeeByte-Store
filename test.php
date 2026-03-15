@@ -1,52 +1,24 @@
 <?php
-require_once 'classes/Database.php';
-require_once 'classes/Cart.php';
+$title = "CoffeeByte - Login";
+ob_start();
+?>
 
-$dbClass = new Database();
-$connection = $dbClass->getConnection();
+<div class="container">
+    <div class="auth-card">
+    <h4 class="mb-4 text-center">Login</h4>
+    <form>
+        <div class="mb-3">
+            <input class="form-control input-cafe" placeholder="Email">
+        </div>
+        <div class="mb-3">
+            <input type="password" class="form-control input-cafe" placeholder="Password">
+        </div>
+        <button class="btn-auth w-100">Login</button>
+    </form>
+    </div>
+</div>
 
-$user_id = 2;
-
-if($connection) {
-    echo "عاش يا سيف! الداتابيز متصلة وزي الفل.";
-
-    echo "<br/>";
-    echo "<br/>";
-    echo "<br/>";
-    echo "============ Cart Operations Test ============";
-    echo "<br/>";
-    echo "<br/>";
-    echo "<br/>";
-
-
-    // // cart object
-    $cart = new Cart($connection, $user_id);
-
-    // // add product
-    // $cart->addProduct(1,1);
-    // $cart->addProduct(2,3);
-
-    // // update product
-    $cart->updateQuantity(2, 6);
-
-    // // remove product
-    // $cart->removeProduct(2);
-
-    echo "<br/>";
-    echo "<br/>";
-
-    // // get cart items
-    var_dump($cart->getItems());
-
-    echo "<br/>";
-    echo "<br/>";
-
-    // // get total price
-    var_dump($cart->getTotal());
-
-    echo "<br/>";
-    echo "<br/>";
-
-    // // get total count
-    var_dump($cart->getCount());
-}
+<?php
+$content = ob_get_clean();
+include "./layouts/auth.php";
+?>

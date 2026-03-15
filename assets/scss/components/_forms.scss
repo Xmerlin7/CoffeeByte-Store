@@ -1,0 +1,38 @@
+.container:has(.auth-card) {
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.auth-card {
+  width: 90%;
+  max-width: 450px;
+  background: white;
+  padding: 30px;
+  border-radius: $radius;
+  box-shadow: $shadow-soft;
+}
+
+.input-cafe {
+  border-radius: 10px;
+  border: 1px solid #ddd;
+  padding: 10px;
+
+  &:focus {
+    border-color: $cafe-primary;
+    box-shadow: 0 0 0 3px rgba($cafe-primary,.2);
+  }
+}
+
+.btn-auth {
+  background: $cafe-primary;
+  border: none;
+  color: white;
+  padding: 10px;
+  border-radius: 10px;
+
+  &:hover {
+    background: darken($cafe-primary,10%);
+  }
+}

@@ -1,0 +1,28 @@
+.navbar-cafe {
+  background: $cafe-dark;
+  padding: 14px 0;
+  box-shadow: $shadow-soft;
+
+  .navbar-brand {
+    color: $cafe-secondary;
+    font-weight: 700;
+    font-size: 1.4rem;
+  }
+
+  .nav-link {
+    color: #ddd;
+    margin-left: 14px;
+
+    &:hover {
+      color: $cafe-secondary;
+    }
+  }
+
+  .cart-badge {
+    background: $cafe-primary;
+    color: white;
+    border-radius: 20px;
+    padding: 4px 10px;
+    font-size: 0.8rem;
+  }
+}
