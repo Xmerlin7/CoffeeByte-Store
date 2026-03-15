@@ -29,12 +29,12 @@ $allOrders = $orderObj->getAllOrders();
 
 
 <?php
-$title = "Admin - All orders ";
+$title = "CoffeeByte - Dashboard - All orders";
 ob_start();
 ?>
 
 <div class="container mt-3">
-    <h2>Admin - All Orders</h2>
+    <h2>Orders</h2>
     
     <?php if($message): ?>
         <div class="alert"><?= $message ?></div>
@@ -79,7 +79,8 @@ ob_start();
         </table>
     </div>
 </div>
+
 <?php
 $content = ob_get_clean();
-include "../../layouts/main.php";
+include "../../layouts/dash.php";
 ?>
