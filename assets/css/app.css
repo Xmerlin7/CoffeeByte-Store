@@ -12530,65 +12530,6 @@ textarea.form-control-lg {
 
 /* Form layout */
 .admin-form {
-.admin-form {
-  background: white;
-  padding: 28px;
-  border-radius: 16px;
-  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
-  display: flex;
-  flex-direction: column;
-  gap: 16px;
-  max-width: 420px;
-}
-
-.form-group {
-  display: flex;
-  flex-direction: column;
-  gap: 6px;
-}
-.form-group label {
-  font-size: 14px;
-  font-weight: 600;
-  color: #2f2a26;
-}
-
-.form-input {
-  padding: 12px 14px;
-  border-radius: 16px;
-  border: 1px solid rgba(0, 0, 0, 0.12);
-  transition: all 0.25s ease;
-  font-size: 14px;
-}
-.form-input:focus {
-  outline: none;
-  border-color: #6f4e37;
-  box-shadow: 0 0 0 3px rgba(111, 78, 55, 0.15);
-}
-
-.user-avatar-lg {
-  width: 60px;
-  height: 60px;
-  border-radius: 50%;
-  object-fit: cover;
-  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
-}
-
-.btn-primary {
-  background: #6f4e37;
-  color: white;
-  border: none;
-  padding: 12px;
-  border-radius: 16px;
-  cursor: pointer;
-  font-weight: 600;
-  transition: all 0.25s ease;
-}
-.btn-primary:hover {
-  background: #b08968;
-  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.12);
-}
-
-.rooms-page {
   display: flex;
   flex-direction: column;
   gap: 20px;
@@ -12715,6 +12656,72 @@ textarea.form-control-lg {
   width: 120px;
   border-radius: 16px;
   box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+}
+
+.admin-form {
+  background: white;
+  padding: 28px;
+  border-radius: 16px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  max-width: 420px;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+.form-group label {
+  font-size: 14px;
+  font-weight: 600;
+  color: #2f2a26;
+}
+
+.form-input {
+  padding: 12px 14px;
+  border-radius: 16px;
+  border: 1px solid rgba(0, 0, 0, 0.12);
+  transition: all 0.25s ease;
+  font-size: 14px;
+}
+.form-input:focus {
+  outline: none;
+  border-color: #6f4e37;
+  box-shadow: 0 0 0 3px rgba(111, 78, 55, 0.15);
+}
+
+.user-avatar-lg {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  object-fit: cover;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+}
+
+.btn-primary {
+  background: #6f4e37;
+  color: white;
+  border: none;
+  padding: 12px;
+  border-radius: 16px;
+  cursor: pointer;
+  font-weight: 600;
+  transition: all 0.25s ease;
+}
+.btn-primary:hover {
+  background: #b08968;
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.12);
+}
+
+.rooms-page {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
 /* Add room button */
 .add-room-btn {
   align-self: flex-start;
