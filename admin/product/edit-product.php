@@ -2,7 +2,7 @@
 require_once __DIR__ . '/../../classes/Database.php';
 require_once __DIR__ . '/../../classes/Product.php';
 require_once __DIR__ . '/../../classes/Category.php';
-require_once __DIR__ . '/../../includes/layout.php';
+//require_once __DIR__ . '/../../includes/layout.php';
 
 // ── Load product ──────────────────────────────────────────
 $id      = isset($_GET['id']) ? (int)$_GET['id'] : 0;
@@ -16,6 +16,11 @@ if (!$p) {
 
 $errors  = [];
 $message = '';
+
+
+$title = "CoffeeByte - Dashboard";
+ob_start();
+
 
 // ── Handle form submit ────────────────────────────────────
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
@@ -69,98 +74,200 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 $categoryObj = new Category();
 $categories  = $categoryObj->getAll();
 
-layout_head('Edit Product', ['label' => '← Back', 'href' => 'manage-products.php']);
+//layout_head('Edit Product', ['label' => '← Back', 'href' => 'manage-products.php']);
 ?>
 
     <h1 class="page-title">Edit Product</h1>
-    <p class="page-sub">Editing <strong style="color:var(--text)"><?= htmlspecialchars($p['name']) ?></strong> — ID <strong>#<?= $id ?></strong></p>
+
+    <p class="page-sub">
+        Editing
+        <strong class="highlight">
+            <?= htmlspecialchars($p['name']) ?>
+        </strong>
+        — ID <strong>#<?= $id ?></strong>
+    </p>
+
 
 <?php if ($message === 'success'): ?>
-    <div class="notif success">✓ &nbsp;Product updated successfully.</div>
+    <div class="notif success">
+        ✓ Product updated successfully.
+    </div>
 <?php elseif ($message === 'error'): ?>
-    <div class="notif error">✕ &nbsp;Something went wrong. Please try again.</div>
+    <div class="notif error">
+        ✕ Something went wrong. Please try again.
+    </div>
 <?php endif; ?>
 
+
 <?php foreach ($errors as $e): ?>
-    <div class="notif error">✕ &nbsp;<?= htmlspecialchars($e) ?></div>
+    <div class="notif error">
+        ✕ <?= htmlspecialchars($e) ?>
+    </div>
 <?php endforeach; ?>
 
+
     <div class="form-card">
-        <form method="POST" enctype="multipart/form-data">
+
+        <form method="POST" enctype="multipart/form-data" class="admin-form">
 
             <div class="form-grid">
 
                 <!-- Name -->
                 <div class="field full">
                     <label for="name">Product Name</label>
-                    <input type="text" id="name" name="name"
-                           value="<?= htmlspecialchars($p['name']) ?>" required>
+
+                    <input
+                            type="text"
+                            id="name"
+                            name="name"
+                            value="<?= htmlspecialchars($p['name']) ?>"
+                            required
+                    >
+
                 </div>
+
 
                 <!-- Price -->
                 <div class="field">
+
                     <label for="price">Price ($)</label>
-                    <input type="number" id="price" name="price" step="0.01" min="0"
-                           value="<?= htmlspecialchars($p['price']) ?>" required>
+
+                    <input
+                            type="number"
+                            id="price"
+                            name="price"
+                            step="0.01"
+                            min="0"
+                            value="<?= htmlspecialchars($p['price']) ?>"
+                            required
+                    >
+
                 </div>
+
 
                 <!-- Status -->
                 <div class="field">
+
                     <label for="status">Status</label>
+
                     <select id="status" name="status">
-                        <option value="available"   <?= $p['status'] === 'available'   ? 'selected' : '' ?>>Available</option>
-                        <option value="unavailable" <?= $p['status'] === 'unavailable' ? 'selected' : '' ?>>Unavailable</option>
+
+                        <option value="available"
+                                <?= $p['status'] === 'available' ? 'selected' : '' ?>>
+                            Available
+                        </option>
+
+                        <option value="unavailable"
+                                <?= $p['status'] === 'unavailable' ? 'selected' : '' ?>>
+                            Unavailable
+                        </option>
+
                     </select>
+
                 </div>
+
 
                 <!-- Category -->
                 <div class="field full">
+
                     <label for="category_id">Category</label>
+
                     <select id="category_id" name="category_id" required>
+
                         <option value="">— Select a category —</option>
+
                         <?php foreach ($categories as $cat): ?>
-                            <option value="<?= $cat['id'] ?>"
-                                    <?= $p['category_id'] == $cat['id'] ? 'selected' : '' ?>>
+
+                            <option
+                                    value="<?= $cat['id'] ?>"
+                                    <?= $p['category_id'] == $cat['id'] ? 'selected' : '' ?>
+                            >
+
                                 <?= htmlspecialchars($cat['name']) ?>
+
                             </option>
+
                         <?php endforeach; ?>
+
                     </select>
+
                 </div>
 
-                <!-- Image upload -->
+
+                <!-- Image Upload -->
                 <div class="field full">
+
                     <label>Product Image</label>
 
                     <?php if (!empty($p['image'])): ?>
+
                         <div class="current-img-wrap">
-                            <div class="current-img-label">Current image</div>
-                            <img src="<?= htmlspecialchars('../../' . $p['image']) ?>" alt="Current">
+
+                            <div class="current-img-label">
+                                Current image
+                            </div>
+
+                            <img
+                                    src="<?= htmlspecialchars('../../' . $p['image']) ?>"
+                                    alt="Current product image"
+                                    class="current-product-img"
+                            >
+
                         </div>
+
                     <?php endif; ?>
 
+
                     <div class="upload-zone" id="uploadZone">
-                        <input type="file" name="image" id="imageInput" accept="image/*">
+
+                        <input
+                                type="file"
+                                name="image"
+                                id="imageInput"
+                                accept="image/*"
+                        >
+
                         <div class="upload-icon">📷</div>
+
                         <div class="upload-label">
-                            <strong>Upload new image</strong> to replace current<br>
+                            <strong>Upload new image</strong> to replace current
+                            <br>
                             PNG, JPG, WEBP — max 2 MB
                         </div>
+
                     </div>
+
+
                     <div class="preview-wrap" id="previewWrap">
-                        <img id="previewImg" src="" alt="New preview">
+
+                        <img
+                                id="previewImg"
+                                src=""
+                                alt="New preview"
+                        >
+
                     </div>
+
                 </div>
 
-            </div><!-- /form-grid -->
+            </div>
+
 
             <div class="form-actions">
-                <button type="submit" class="btn-save">✓ &nbsp;Save Changes</button>
-                <a href="manage-products.php" class="btn-cancel">Cancel</a>
+
+                <button type="submit" class="btn-save">
+                    ✓ Save Changes
+                </button>
+
+                <a href="manage-products.php" class="btn-cancel">
+                    Cancel
+                </a>
+
             </div>
 
         </form>
-    </div>
 
+    </div>
     <script>
         const input   = document.getElementById('imageInput');
         const preview = document.getElementById('previewImg');
@@ -184,4 +291,8 @@ layout_head('Edit Product', ['label' => '← Back', 'href' => 'manage-products.p
         });
     </script>
 
-<?php layout_foot(); ?>
+<?php //layout_foot(); ?>
+<?php
+$content = ob_get_clean();
+include "../../layouts/dash.php";
+?>

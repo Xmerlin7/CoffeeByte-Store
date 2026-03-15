@@ -53,48 +53,72 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 $categoryObj = new Category();
 $categories  = $categoryObj->getAll();
 
-layout_head('Add Product', ['label' => '← Back', 'href' => 'manage-products.php']);
-?>
 
+$title = "CoffeeByte - create-product";
+ob_start();
+
+//layout_head('Add Product', ['label' => '← Back', 'href' => 'manage-products.php']);
+?>
     <h1 class="page-title">Add Product</h1>
     <p class="page-sub">Fill in the details below to create a new product.</p>
 
 <?php if ($message === 'success'): ?>
-    <div class="notif success">✓ &nbsp;Product created successfully. <a href="manage-products.php" style="color:inherit;margin-left:8px;">View all →</a></div>
+    <div class="notif success">
+        ✓ Product created successfully.
+        <a href="manage-products.php" class="notif-link">View all →</a>
+    </div>
 <?php elseif ($message === 'error'): ?>
-    <div class="notif error">✕ &nbsp;Something went wrong. Please try again.</div>
+    <div class="notif error">
+        ✕ Something went wrong. Please try again.
+    </div>
 <?php endif; ?>
 
 <?php foreach ($errors as $e): ?>
-    <div class="notif error">✕ &nbsp;<?= htmlspecialchars($e) ?></div>
+    <div class="notif error">
+        ✕ <?= htmlspecialchars($e) ?>
+    </div>
 <?php endforeach; ?>
 
+
     <div class="form-card">
-        <form method="POST" enctype="multipart/form-data">
+
+        <form method="POST" enctype="multipart/form-data" class="admin-form">
 
             <div class="form-grid">
 
                 <!-- Name -->
                 <div class="field full">
                     <label for="name">Product Name</label>
-                    <input type="text" id="name" name="name"
-                           value="<?= htmlspecialchars($name) ?>"
-                           placeholder="e.g. Cappuccino" required>
+                    <input
+                            type="text"
+                            id="name"
+                            name="name"
+                            value="<?= htmlspecialchars($name) ?>"
+                            placeholder="e.g. Cappuccino"
+                            required
+                    >
                 </div>
 
                 <!-- Price -->
                 <div class="field">
                     <label for="price">Price ($)</label>
-                    <input type="number" id="price" name="price" step="0.01" min="0"
-                           value="<?= htmlspecialchars($price) ?>"
-                           placeholder="0.00" required>
+                    <input
+                            type="number"
+                            id="price"
+                            name="price"
+                            step="0.01"
+                            min="0"
+                            value="<?= htmlspecialchars($price) ?>"
+                            placeholder="0.00"
+                            required
+                    >
                 </div>
 
                 <!-- Status -->
                 <div class="field">
                     <label for="status">Status</label>
                     <select id="status" name="status">
-                        <option value="available"   <?= $status === 'available'   ? 'selected' : '' ?>>Available</option>
+                        <option value="available" <?= $status === 'available' ? 'selected' : '' ?>>Available</option>
                         <option value="unavailable" <?= $status === 'unavailable' ? 'selected' : '' ?>>Unavailable</option>
                     </select>
                 </div>
@@ -104,41 +128,66 @@ layout_head('Add Product', ['label' => '← Back', 'href' => 'manage-products.ph
                     <label for="category_id">Category</label>
                     <select id="category_id" name="category_id" required>
                         <option value="">— Select a category —</option>
+
                         <?php foreach ($categories as $cat): ?>
-                            <option value="<?= $cat['id'] ?>"
-                                    <?= $category_id == $cat['id'] ? 'selected' : '' ?>>
+                            <option
+                                    value="<?= $cat['id'] ?>"
+                                    <?= $category_id == $cat['id'] ? 'selected' : '' ?>
+                            >
                                 <?= htmlspecialchars($cat['name']) ?>
                             </option>
                         <?php endforeach; ?>
+
                     </select>
                 </div>
 
-                <!-- Image upload -->
+                <!-- Image Upload -->
                 <div class="field full">
+
                     <label>Product Image</label>
+
                     <div class="upload-zone" id="uploadZone">
-                        <input type="file" name="image" id="imageInput" accept="image/*">
+
+                        <input
+                                type="file"
+                                name="image"
+                                id="imageInput"
+                                accept="image/*"
+                        >
+
                         <div class="upload-icon">📷</div>
+
                         <div class="upload-label">
-                            <strong>Click to upload</strong> or drag & drop<br>
+                            <strong>Click to upload</strong> or drag & drop
+                            <br>
                             PNG, JPG, WEBP — max 2 MB
                         </div>
+
                     </div>
+
                     <div class="preview-wrap" id="previewWrap">
                         <img id="previewImg" src="" alt="Preview">
                     </div>
+
                 </div>
 
-            </div><!-- /form-grid -->
+            </div>
 
             <div class="form-actions">
-                <button type="submit" class="btn-save">✓ &nbsp;Create Product</button>
-                <a href="manage-products.php" class="btn-cancel">Cancel</a>
+
+                <button type="submit" class="btn-save">
+                    ✓ Create Product
+                </button>
+
+                <a href="manage-products.php" class="btn-cancel">
+                    Cancel
+                </a>
+
             </div>
 
         </form>
-    </div>
 
+    </div>
     <script>
         const input   = document.getElementById('imageInput');
         const preview = document.getElementById('previewImg');
@@ -162,4 +211,8 @@ layout_head('Add Product', ['label' => '← Back', 'href' => 'manage-products.ph
         });
     </script>
 
-<?php layout_foot(); ?>
+<?php
+$content = ob_get_clean();
+include "../../layouts/dash.php";
+?>
+<?php //layout_foot(); ?>
