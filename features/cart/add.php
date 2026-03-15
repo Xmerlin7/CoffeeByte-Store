@@ -1,19 +1,36 @@
 <?php
+header('Content-Type: application/json');
 session_start();
 
 require_once "../../classes/Database.php";
 require_once "../../classes/Cart.php";
 
-$db = (new Database())->getConnection();
+$user_id = $_SESSION['user_id'] ?? null;
+if (!$user_id) {
+	http_response_code(401);
+	echo json_encode(["success" => false, "message" => "Unauthorized"]);
+	exit;
+}
 
-// $user_id = $_SESSION['user_id'];
-$user_id = 2;
+$product_id = (int)($_POST['product_id'] ?? 0);
+if ($product_id <= 0) {
+	http_response_code(422);
+	echo json_encode(["success" => false, "message" => "Invalid product"]);
+	exit;
+}
 
-$product_id = $_POST['product_id'];
+try {
+	$db = (new Database())->getConnection();
+	$cart = new Cart($db, $user_id);
+	$added = $cart->addProduct($product_id, 1);
 
-$cart = new Cart($db,$user_id);
+	if (!$added) {
+		throw new Exception('Add to cart failed');
+	}
 
-$cart->addProduct($product_id,1);
-
-echo json_encode(["success"=>true]);
+	echo json_encode(["success" => true]);
+} catch (Throwable $e) {
+	http_response_code(500);
+	echo json_encode(["success" => false, "message" => "Server error"]);
+}
 ?>
