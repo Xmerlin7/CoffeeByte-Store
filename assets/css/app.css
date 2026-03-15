@@ -12403,6 +12403,47 @@ textarea.form-control-lg {
   box-shadow: 0 16px 40px rgba(0, 0, 0, 0.12);
 }
 
+.field input {
+  max-width: 300px;
+  width: 100%;
+  padding: 0.75rem 1rem;
+  border: 1.5px solid #cfcfcf;
+  border-radius: 6px;
+  background: #fafafa;
+  font-size: 1rem;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+.field input:focus {
+  border-color: #8d6748;
+  box-shadow: 0 0 0 2px rgba(141, 103, 72, 0.15);
+  outline: none;
+}
+
+button {
+  padding: 0.75rem 1.5rem;
+  background: #8d6748;
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s, box-shadow 0.2s;
+}
+button:hover, button:focus {
+  background: #a47c5c;
+  box-shadow: 0 2px 8px rgba(141, 103, 72, 0.15);
+  outline: none;
+}
+button:active {
+  background: #7a5637;
+}
+button:disabled {
+  background: #cfcfcf;
+  color: #888;
+  cursor: not-allowed;
+}
+
 /* pages */
 .menu-header {
   background: linear-gradient(rgba(47, 42, 38, 0.85), rgba(47, 42, 38, 0.85));

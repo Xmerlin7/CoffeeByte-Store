@@ -1,0 +1,45 @@
+.field input {
+    max-width: 300px;
+    width: 100%;
+    padding: 0.75rem 1rem;
+    border: 1.5px solid #cfcfcf;
+    border-radius: 6px;
+    background: #fafafa;
+    font-size: 1rem;
+    transition: border-color 0.2s, box-shadow 0.2s;
+
+    &:focus {
+        border-color: #8d6748;
+        box-shadow: 0 0 0 2px rgba(141, 103, 72, 0.15);
+        outline: none;
+    }
+}
+
+button {
+    padding: 0.75rem 1.5rem;
+    background: #8d6748;
+    color: #fff;
+    border: none;
+    border-radius: 6px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.2s, box-shadow 0.2s;
+
+    &:hover,
+    &:focus {
+        background: #a47c5c;
+        box-shadow: 0 2px 8px rgba(141, 103, 72, 0.15);
+        outline: none;
+    }
+
+    &:active {
+        background: #7a5637;
+    }
+
+    &:disabled {
+        background: #cfcfcf;
+        color: #888;
+        cursor: not-allowed;
+    }
+}
