@@ -96,11 +96,11 @@ INSERT INTO categories (name) VALUES ('Drinks'), ('Snacks'), ('Desserts');
 
 -- Products demo
 INSERT INTO products (name, price, category_id, image, status) VALUES
-('Latte', 40.00, 1, 'images/latte.jpg', 'available'),
-('Cappuccino', 38.00, 1, 'images/cappuccino.jpg', 'available'),
-('Veggie Sandwich', 55.00, 2, 'images/veggie_sandwich.jpg', 'available'),
-('Brownie', 30.00, 3, 'images/brownie.jpg', 'available'),
-('Muffin', 28.00, 3, 'images/muffin.jpg', 'available');
+('Latte', 40.00, 1, 'prod_69b42aa901753.webp', 'available'),
+('Cappuccino', 38.00, 1, 'prod_69b42aa901753.webp', 'available'),
+('Veggie Sandwich', 55.00, 2, 'prod_69b42aa901753.webp', 'available'),
+('Brownie', 30.00, 3, 'prod_69b42aa901753.webp', 'available'),
+('Muffin', 28.00, 3, 'prod_69b42aa901753.webp', 'available');
 
 -- Orders demo
 INSERT INTO orders (user_id, room_id, total_price, status, notes) VALUES
@@ -113,7 +113,7 @@ INSERT INTO order_items (order_id, product_id, quantity, unit_price) VALUES
 (1, 1, 1, 35.00),  -- Turkish Coffee
 (1, 3, 1, 75.50),  -- Club Sandwich
 (2, 4, 1, 60.00),  -- Cheese Sandwich
-(2, 6, 1, 25.00),  -- Cupcake
+(2, 5, 1, 25.00),  -- Cupcake
 (3, 3, 1, 75.50),
 (4, 1, 2, 35.00);  -- Turkish Coffee x2
 
