@@ -1,5 +1,7 @@
 <?php
 $base = "/CoffeeByte-Store";
+require_once __DIR__ . "/../config/functions.php";
+checkAdmin();
 ?>
 <!DOCTYPE html>
 <html>
