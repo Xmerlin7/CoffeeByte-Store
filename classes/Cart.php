@@ -28,15 +28,19 @@ class Cart
     public function addProduct($product_id, $quantity = 1)
     {
         $stmt = $this->pdo->prepare("
-            INSERT INTO cart_items (cart_id, product_id, quantity)
-            VALUES (?, ?, ?)
-            ON DUPLICATE KEY UPDATE quantity = quantity + VALUES(quantity)
+            INSERT INTO cart_items (cart_id, product_id, quantity, unit_price)
+            SELECT ?, p.id, ?, p.price
+            FROM products p
+            WHERE p.id = ?
+            ON DUPLICATE KEY UPDATE
+                quantity = quantity + VALUES(quantity),
+                unit_price = VALUES(unit_price)
         ");
 
         return $stmt->execute([
             $this->cart_id,
-            $product_id,
-            $quantity
+            $quantity,
+            $product_id
         ]);
     }
 
