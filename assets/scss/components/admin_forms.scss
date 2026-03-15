@@ -1,0 +1,43 @@
+.admin-form {
+  background: white;
+  padding: 30px;
+  border-radius: $radius;
+  box-shadow: $shadow-soft;
+
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.form-input {
+  padding: 12px 14px;
+  border-radius: $radius;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+
+  transition: $transition;
+
+  &:focus {
+    outline: none;
+    border-color: $cafe-primary;
+    box-shadow: 0 0 0 3px rgba(111, 78, 55, 0.15);
+  }
+}
+
+.btn-primary {
+  background: $cafe-primary;
+  color: white;
+
+  border: none;
+  padding: 12px;
+
+  border-radius: $radius;
+
+  cursor: pointer;
+
+  transition: $transition;
+
+  &:hover {
+    background: $cafe-accent;
+    box-shadow: $shadow-hover;
+  }
+}
