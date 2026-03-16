@@ -38,3 +38,22 @@ function checkUser() {
         exit;
     }
 }
+
+function checkLoggedIn() {
+    ensureSessionStarted();
+
+    if (isset($_SESSION['user_id'])) {
+
+        $role = $_SESSION['user_role'] ?? '';
+
+        if ($role === 'admin') {
+            header("Location: /admin/dashboard.php");
+            exit;
+        }
+
+        header("Location: /public/home.php");
+        exit;
+    }
+}
+
+?>

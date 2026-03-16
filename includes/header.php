@@ -15,7 +15,7 @@ $isLoggedIn = isset($_SESSION['user_id']);
     </button>
 
     <div class="collapse navbar-collapse" id="nav">
-      <ul class="navbar-nav ms-auto">
+      <ul class="navbar-nav ms-auto me-4">
         <li class="nav-item">
           <a class="nav-link" href="/public/home.php">Home</a>
         </li>
@@ -28,13 +28,11 @@ $isLoggedIn = isset($_SESSION['user_id']);
         <li class="nav-item">
           <a class="nav-link" href="/public/order.php">Orders</a>
         </li>
-        <li>
-          <a class="ms-4 btn btn-danger d-flex align-items-center gap-2 px-3" style="margin-top: 2px;" href="/includes/logout.php">
-            <i class="fa-solid fa-right-from-bracket"></i>
-            Logout
-          </a>
-        </li>
-      </ul>
+        </ul>
+        <a class="btn btn-danger d-flex align-items-center gap-2" style="margin-top: 2px; width:fit-content;" href="/includes/logout.php">
+          <i class="fa-solid fa-right-from-bracket"></i>
+          Logout
+        </a>
     </div>
   </div>
 </nav>

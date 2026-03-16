@@ -3,6 +3,7 @@
   border-radius: $radius;
   overflow: hidden;
   box-shadow: $shadow-soft;
+  height: 100%;
 
   .cafe-img {
     height: 220px;
@@ -24,6 +25,7 @@
   }
 
   .btn-coffee {
+    width: 100%;
     background: $cafe-primary;
     color: white;
     border: none;
@@ -37,6 +39,7 @@
 }
 
 .cart-controls {
+    width: 100%;
     display: flex;
     align-items: center;
     gap: 8px;

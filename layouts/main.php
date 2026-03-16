@@ -1,6 +1,6 @@
 <?php
+// $base = "/myprojects/CoffeeByte-Store";
 require_once "../config/functions.php";
-$base = "/myprojects/CoffeeByte-Store";
 checkUser();
 ?>
 <!DOCTYPE html>
