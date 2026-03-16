@@ -54,15 +54,17 @@ onerror="handleImageError(this)"
 </span>
 </td>
 
-<td class="actions">
+<td>
 
-<a href="edit-user.php?id=<?= $user['id'] ?>" class="btn-edit">
+<div class="actions">
+    <a href="edit-user.php?id=<?= $user['id'] ?>" class="btn-edit">
 Edit
 </a>
 
 <a href="delete-user.php?id=<?= $user['id'] ?>" class="btn-delete">
 Delete
 </a>
+</div>
 
 </td>
 
