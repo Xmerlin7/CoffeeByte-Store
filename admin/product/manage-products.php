@@ -115,7 +115,8 @@ ob_start();
                                     <img
                                             src="../../<?= htmlspecialchars($p['image']) ?>"
                                             class="prod-img"
-                                            alt=""
+                                            alt="product-image"
+                                            onerror="handleImageError(this)"
                                     >
 
                                 <?php else: ?>
@@ -340,6 +341,7 @@ $<?= number_format((float)$p['price'], 2) ?>
             });
 
     </script>
+    <script src="/assets/js/script.js"></script>
 
 
 <?php

@@ -39,6 +39,7 @@ ob_start();
 src="../../assets/uploads/users/<?= rawurlencode($user['image']) ?>"
 alt="<?= htmlspecialchars($user['name']) ?>"
 class="user-avatar"
+onerror="handleImageError(this)"
 >
 <?php else: ?>
 <span class="no-image">No image</span>
@@ -73,6 +74,9 @@ Delete
 </div>
 
 </div>
+
+<script src="/assets/js/script.js"></script>
+
 <?php
 $content = ob_get_clean();
 include "../../layouts/dash.php";
