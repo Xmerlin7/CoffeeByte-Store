@@ -11,9 +11,12 @@ ob_start();
 ?>
 <div class="rooms-page">
 
-<a href="add-room.php" class="btn-primary add-room-btn">
-+ Add Room
-</a>
+<div class="w-100 d-flex justify-content-between align-items-center">
+    <h2 class="m-0">Rooms</h2>
+    <a href="add-room.php" class="btn-checkout m-0" style="width: fit-content;">
+        + Add Room
+    </a>
+</div>
 
 <div class="table-wrapper card">
 

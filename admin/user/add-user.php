@@ -80,6 +80,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 $title = "CoffeeByte - Add User";
 ob_start();
 ?>
+
+<h2>Add User</h1>
+<p class="page-sub">Fill in the details below to create a new user.</p>
+
+<div class="form-card">
 <form class="admin-form" method="POST" enctype="multipart/form-data">
 
 <?php if (!empty($errors)): ?>
@@ -122,6 +127,8 @@ required
 <button class="btn-primary">Add User</button>
 
 </form>
+</div>
+
 <?php
 $content = ob_get_clean();
 include "../../layouts/dash.php";

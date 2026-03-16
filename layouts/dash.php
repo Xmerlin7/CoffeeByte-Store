@@ -22,15 +22,13 @@ checkAdmin();
         <title><?= $title ?? "CoffeeByte - Dashboard" ?></title>
     </head>
     <body class="admin-body">
-        <?php include __DIR__ . "/../includes/header.php"; ?>
             <div class="admin-layout">
                 <?php include __DIR__ . "/../includes/sidebar.php"; ?>
                 <div class="admin-main">
-                    <div class="admin-content">
+                    <div class="admin-content container">
                         <?= $content ?>
                     </div>
                 </div>
         </div>
-        <?php include __DIR__ . "/../includes/footer.php"; ?>
     </body>
 </html>

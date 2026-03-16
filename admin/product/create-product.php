@@ -59,7 +59,7 @@ ob_start();
 
 //layout_head('Add Product', ['label' => '← Back', 'href' => 'manage-products.php']);
 ?>
-    <h1 class="page-title">Add Product</h1>
+    <h2>Add Product</h1>
     <p class="page-sub">Fill in the details below to create a new product.</p>
 
 <?php if ($message === 'success'): ?>

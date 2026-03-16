@@ -1,4 +1,5 @@
 <div class="admin-sidebar">
+    <h2 class="pb-5">☕ CoffeeByte</h2>
     <ul class="sidebar-menu">
         <li class="menu-title">Main</li>
         <li>
@@ -57,6 +58,12 @@
                 Create User
             </a>
         </li>
-        
     </ul>
+
+    <hr>
+    
+    <a href="/includes/logout.php" class="btn btn-danger d-flex align-items-center gap-2 px-3">
+        <i class="fa-solid fa-right-from-bracket"></i>
+        Logout
+    </a>
 </div>
