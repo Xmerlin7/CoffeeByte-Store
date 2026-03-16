@@ -28,18 +28,12 @@ $isLoggedIn = isset($_SESSION['user_id']);
         <li class="nav-item">
           <a class="nav-link" href="/public/order.php">Orders</a>
         </li>
-        <?php if ($isLoggedIn): ?>
-          <li class="nav-item">
-            <a class="nav-link" href="/includes/logout.php">Logout</a>
-          </li>
-        <?php else: ?>
-          <li class="nav-item">
-            <a class="nav-link" href="/public/login.php">Login</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="/public/register.php">Register</a>
-          </li>
-        <?php endif; ?>
+        <li>
+          <a class="ms-4 btn btn-danger d-flex align-items-center gap-2 px-3" style="margin-top: 2px;" href="/includes/logout.php">
+            <i class="fa-solid fa-right-from-bracket"></i>
+            Logout
+          </a>
+        </li>
       </ul>
     </div>
   </div>

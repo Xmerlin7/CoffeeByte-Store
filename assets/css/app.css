@@ -11137,13 +11137,14 @@ button {
   margin-bottom: 5px;
   font-weight: 600; }
 
-.form-group input {
+.form-group input, textarea {
   border-radius: 10px;
   border: 1px solid #ddd;
   padding: 10px;
   transition: all 0.2s ease; }
 
-.form-group input:focus {
+.form-group input:focus,
+.form-group textarea:focus {
   border-color: #6f4e37;
   box-shadow: 0 0 0 3px rgba(111, 78, 55, 0.15); }
 
